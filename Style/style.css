@@ -1,0 +1,39 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body { 
+    background: #f5f7ff;
+    padding: 40px 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: 51565d;
+} 
+
+.calendar {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(7, minmax(120px, 1fr));
+    grid-template-rows: 70px;
+    grid-auto-rows: 140px;
+    overflow: auto;
+}
+
+.calendar .container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: 5ff;
+    max-width: 1500px;
+}
+
+.calendar .header {
+    text-align: center;
+    padding: 20px;
+    background: 5ff;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.1);
+}
