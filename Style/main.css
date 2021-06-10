@@ -1,10 +1,13 @@
 main{
+    height: calc(100% - 3rem);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 100px auto;
+    grid-template-rows: 4rem 100px auto;
     background-color: orange;
     grid-template-areas: 
-    "sidepanel header header header";
+    "sidepanel header header header"
+    "sidepanel calender calender calender"
+    "sidepanel calender calender calender";
 }
 
 .margin-top{
@@ -21,11 +24,14 @@ header{
 .grid-calender-header{
     grid-area: header;
     background-color: bisque;
-    height: 100%;
 }
 
 .todo-side-panel{
     grid-area: sidepanel;
     background-color: pink;
-    height: 100%;
+}
+
+.calender{
+    grid-area: calender;
+    background-color: blueviolet;
 }
