@@ -1,0 +1,10 @@
+.todo-header{
+    background-color: cornflowerblue;
+    flex-grow: 1;
+}
+
+.todo-item-list{
+    background-color: chartreuse;
+    flex-grow: 2;
+}
+

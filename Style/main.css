@@ -1,0 +1,48 @@
+main{
+    height: calc(100% - 3rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    background-color: orange;
+    grid-template-areas: 
+    "sidepanel calender calender calender";
+}
+
+.margin-top{
+    margin-top: 2rem;
+}
+
+header{
+    background-color: aquamarine;
+    color: black;
+    font-size: 20px;
+    height: 3rem;
+}
+
+.todo-side-panel{
+    grid-area: sidepanel;
+    background-color: pink;
+}
+
+.calender{
+    grid-area: calender;
+    background-color: blueviolet;
+}
+
+@media (max-width: 600px) {
+
+    main{
+        grid-template-areas: 
+    "sidepanel";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    }
+
+    .calender{
+        display: none;
+    }
+
+    .calender > div{
+        display: none;
+    }
+}
