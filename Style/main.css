@@ -2,11 +2,9 @@ main{
     height: calc(100% - 3rem);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 4rem 100px auto;
+    grid-template-rows: auto;
     background-color: orange;
     grid-template-areas: 
-    "sidepanel header header header"
-    "sidepanel calender calender calender"
     "sidepanel calender calender calender";
 }
 
@@ -21,11 +19,6 @@ header{
     height: 3rem;
 }
 
-.grid-calender-header{
-    grid-area: header;
-    background-color: bisque;
-}
-
 .todo-side-panel{
     grid-area: sidepanel;
     background-color: pink;
@@ -34,4 +27,22 @@ header{
 .calender{
     grid-area: calender;
     background-color: blueviolet;
+}
+
+@media (max-width: 600px) {
+
+    main{
+        grid-template-areas: 
+    "sidepanel";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    }
+
+    .calender{
+        display: none;
+    }
+
+    .calender > div{
+        display: none;
+    }
 }

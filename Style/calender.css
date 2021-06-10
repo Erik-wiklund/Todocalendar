@@ -16,3 +16,9 @@
 .calender-grid > div{
     background-color: yellowgreen;
 }
+
+@media (max-width: 600px) {
+    .calender-grid{
+        display: none;
+    }
+}
