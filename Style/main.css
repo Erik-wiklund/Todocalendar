@@ -1,0 +1,31 @@
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100px auto;
+    background-color: orange;
+    grid-template-areas: 
+    "sidepanel header header header";
+}
+
+.margin-top{
+    margin-top: 2rem;
+}
+
+header{
+    background-color: aquamarine;
+    color: black;
+    font-size: 20px;
+    height: 3rem;
+}
+
+.grid-calender-header{
+    grid-area: header;
+    background-color: bisque;
+    height: 100%;
+}
+
+.todo-side-panel{
+    grid-area: sidepanel;
+    background-color: pink;
+    height: 100%;
+}
