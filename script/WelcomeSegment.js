@@ -1,13 +1,12 @@
 window.addEventListener('load', main);
 
 function main() {
+    let date = new Date()
     printTimeOfDay();
-
-    printDayDateAndMonth();
+    printDayDateAndMonth(date);
 }
 
-function printDayDateAndMonth(params) {
-    let date = new Date();
+function printDayDateAndMonth(date) {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     let dateString = date.toLocaleDateString('sv', options);
     document.getElementById('date').innerHTML = dateString;
@@ -17,18 +16,13 @@ function printTimeOfDay() {
     let currentTime = new Date();
     let hours = currentTime.getHours();
     let minutes = currentTime.getMinutes();
-    let seconds = currentTime.getSeconds();
 
     if (minutes < 10) {
         minutes = '0' + minutes
     }
 
-    if (seconds < 10) {
-        seconds = '0' + seconds
-    }
-
-    var t_str = hours + ':' + minutes + ':' + seconds;
+    var t_str = hours + ':' + minutes;
 
     document.getElementById('clock').innerHTML = t_str;
 }
-setInterval(printTimeOfDay, 500);
+setInterval(printTimeOfDay, 1000);
