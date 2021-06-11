@@ -24,3 +24,11 @@ body {
 .align-center{
     align-items: center;
 }
+
+.grey{
+    color: grey;
+}
+
+.black{
+    color: black;
+}
