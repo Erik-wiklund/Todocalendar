@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./Style/calender.css">
     <link rel="stylesheet" href="./Style/todo.css">
     <script src="./script/script.js"></script>
+    <script src="./script/WelcomeSegment.js"></script>
     <title>Webgang Calendar</title>
 </head>
 
@@ -20,7 +21,10 @@
     </header>
     <main>
         <div class="todo-side-panel flex column">
-            <div class="todo-header justify-center align-center flex">Header</div>
+            <div class="todo-header justify-center align-center flex column">
+                <h2 class="todoheader-font">Klockan är: <span id="clock"></span></h2>
+                <h2 class="todoheader-font"><span id="date"></span></h2>
+            </div>
             <div class="todo-item-list justify-center flex">List</div>
         </div>
 
