@@ -15,7 +15,7 @@ function createTodoList(id) {
     todoList.innerText = "";
 
     const addTodoDiv = document.createElement("div");
-    addTodoDiv.className = ("full-width" + " flex" + " space-around");
+    addTodoDiv.className = ("full-width flex space-between");
 
     addTodoDiv.innerHTML = "<p>Lägg till nytt Todo</p>";
 
@@ -35,7 +35,7 @@ function fillTodoList() {
     for (let todo of todoDictionary[local_id]) {
         const todoList = document.querySelector(".todo-item-list");
         const newTodoDiv = document.createElement("div");
-        newTodoDiv.className = ("full-width flex space-around no-margin-on-p");
+        newTodoDiv.className = ("full-width flex space-between no-margin-on-p");
 
         const todoText = document.createElement("p");
         todoText.addEventListener("click", editTodo);
@@ -70,9 +70,9 @@ function addNewTodo() {
 function removeTodo(event) {
 
     let text = event.target.parentNode.childNodes[0].innerText;
-    const index =  getStringIndex(text);
+    const index = getStringIndex(text);
 
-    if (index || index === 0){
+    if (index || index === 0) {
         todoDictionary[local_id].splice(index, 1);
     }
 
@@ -80,20 +80,20 @@ function removeTodo(event) {
     createCalender();
 }
 
-function editTodo(event){
+function editTodo(event) {
     const text = event.target.innerText;
     const index = getStringIndex(text);
 
     if (index || index === 0) {
         const newTodo = prompt("Ändra Todo", text);
-        if (newTodo){
+        if (newTodo) {
             todoDictionary[local_id][index] = newTodo;
-        }  
+        }
     }
 
     createTodoList(local_id);
 }
 
-function getStringIndex(string){
+function getStringIndex(string) {
     return todoDictionary[local_id].findIndex(x => x === string);
 }

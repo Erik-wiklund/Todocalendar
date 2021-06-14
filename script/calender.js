@@ -103,6 +103,7 @@ function showTodos(event) {
     if (prevSelected) {
         prevSelected.classList = "";
     }
+    
     prevSelected = event.target;
     event.target.classList.add("selectedDiv");
     createTodoList(event.target.id);
