@@ -48,3 +48,11 @@ body {
 .no-margin-on-p > p{
     margin: 0;
 }
+
+.margin-left {
+    margin-left: 1em;
+}
+
+.margin-right {
+    margin-right: 1em;
+}
