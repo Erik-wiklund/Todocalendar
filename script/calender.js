@@ -95,6 +95,11 @@ function nextMonth() {
 }
 
 function showTodos(event) {
+
+    if (event.target !== this) {
+        return;
+    }
+
     if (prevSelected) {
         prevSelected.classList = "";
     }

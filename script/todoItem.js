@@ -86,7 +86,9 @@ function editTodo(event){
 
     if (index || index === 0) {
         const newTodo = prompt("Ändra Todo", text);
-        todoDictionary[local_id][index] = newTodo;
+        if (newTodo){
+            todoDictionary[local_id][index] = newTodo;
+        }  
     }
 
     createTodoList(local_id);
