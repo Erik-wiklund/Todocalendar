@@ -95,7 +95,8 @@ function nextMonth() {
 }
 
 function showTodos(event) {
-    if(event.target !== this){
+
+    if (event.target !== this) {
         return;
     }
 
