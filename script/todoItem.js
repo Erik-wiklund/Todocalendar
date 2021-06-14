@@ -15,7 +15,7 @@ function createTodoList(id) {
     todoList.innerText = "";
 
     const addTodoDiv = document.createElement("div");
-    addTodoDiv.className = ("full-width" + " flex" + " space-around");
+    addTodoDiv.className = ("full-width flex space-between");
 
     addTodoDiv.innerHTML = "<p>Lägg till nytt Todo</p>";
 
@@ -35,7 +35,7 @@ function fillTodoList() {
     for (let todo of todoDictionary[local_id]) {
         const todoList = document.querySelector(".todo-item-list");
         const newTodoDiv = document.createElement("div");
-        newTodoDiv.className = ("full-width flex space-around no-margin-on-p");
+        newTodoDiv.className = ("full-width flex space-between no-margin-on-p");
 
         const todoText = document.createElement("p");
         todoText.addEventListener("click", editTodo);
