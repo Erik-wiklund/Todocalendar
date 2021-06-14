@@ -25,6 +25,12 @@ function createCalender() {
         else if (i < firstWeekdayInMonth + numberOfDays) {
             dayDiv.id = selectedYear + "." + selectedMonth + "." + (i - firstWeekdayInMonth + 1);
             dayDiv.innerText = i - firstWeekdayInMonth + 1;
+            dayDiv.addEventListener("click", showTodos);
+
+            if (prevSelected && prevSelected.id === dayDiv.id) {
+                prevSelected = dayDiv;
+                dayDiv.classList.add("selectedDiv");
+            }
         }
         else {
             dayDiv.innerText = i - (numberOfDays + firstWeekdayInMonth - 1);
@@ -80,6 +86,16 @@ function nextMonth() {
     createCalender();
 }
 
+function showTodos(event) {
+    if(prevSelected)
+    {
+        prevSelected.classList = "";
+    }
+    prevSelected = event.target;
+    event.target.classList.add("selectedDiv");
+    createTodoList(event.target.id);
+}
+
 function findFirstWeekDay(monthInt, yearInt) {
     const firstWeekDay = new Date(yearInt, monthInt).getDay();
     if (firstWeekDay == 0) {
@@ -97,4 +113,5 @@ function getMonthDays(monthInt, yearInt) {
 const gridSize = 42;
 let selectedMonth = new Date().getMonth();
 let selectedYear = new Date().getFullYear();
+let prevSelected;
 var months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
