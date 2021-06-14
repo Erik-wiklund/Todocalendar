@@ -1,6 +1,6 @@
 let todoDictionary = [];
 
-function createTodoList(id){
+function createTodoList(id) {
     const todoList = document.querySelector(".todo-item-list");
     todoList.innerText = "";
 
@@ -8,8 +8,8 @@ function createTodoList(id){
     addTodoDiv.className = ("full-width" + " flex" + " space-around");
 
     addTodoDiv.innerHTML = "<p>Lägg till nytt Todo</p>";
-    
-    const plusbutton = document.createElement("p");    
+
+    const plusbutton = document.createElement("p");
     plusbutton.innerText = "+";
     plusbutton.addEventListener("click", addNewTodo);
     addTodoDiv.append(plusbutton);
@@ -17,9 +17,8 @@ function createTodoList(id){
     todoList.append(addTodoDiv);
 }
 
-function fillTodoList(todo)
-{
-    
+function fillTodoList(todo) {
+
     const todoList = document.querySelector(".todo-item-list");
     const newTodoDiv = document.createElement("div");
     newTodoDiv.className = ("full-width" + " flex" + " space-around" + " no-margin-on-p");
@@ -36,12 +35,14 @@ function fillTodoList(todo)
     todoList.append(newTodoDiv);
 }
 
-function addNewTodo(){
+function addNewTodo() {
     const todo = prompt("skriv nytt todo");
 
-    fillTodoList(todo);
+    if (todo) {
+        fillTodoList(todo);
+    }
 }
 
-function removeTodo(event){
+function removeTodo(event) {
     event.target.parentNode.parentNode.removeChild(event.target.parentNode);
 }
