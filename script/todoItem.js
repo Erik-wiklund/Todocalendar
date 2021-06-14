@@ -70,9 +70,9 @@ function addNewTodo() {
 function removeTodo(event) {
 
     let text = event.target.parentNode.childNodes[0].innerText;
-    const index =  getStringIndex(text);
+    const index = getStringIndex(text);
 
-    if (index || index === 0){
+    if (index || index === 0) {
         todoDictionary[local_id].splice(index, 1);
     }
 
@@ -80,18 +80,20 @@ function removeTodo(event) {
     createCalender();
 }
 
-function editTodo(event){
+function editTodo(event) {
     const text = event.target.innerText;
     const index = getStringIndex(text);
 
     if (index || index === 0) {
         const newTodo = prompt("Ändra Todo", text);
-        todoDictionary[local_id][index] = newTodo;
+        if (newTodo) {
+            todoDictionary[local_id][index] = newTodo;
+        }
     }
 
     createTodoList(local_id);
 }
 
-function getStringIndex(string){
+function getStringIndex(string) {
     return todoDictionary[local_id].findIndex(x => x === string);
 }
