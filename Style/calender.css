@@ -5,6 +5,7 @@
     border: 1px solid green;
     gap: 1em;
     padding: 1em;
+    position: relative;
     grid-template-areas: 
     "header header header header header header header";
 }
@@ -16,6 +17,12 @@
 .calender-grid > div{
     background-color: yellowgreen;
     min-width: 3.5em;
+    position: relative;
+}
+.task-div{
+    position:absolute;
+    bottom:0;
+    right:0;
 }
 
 @media (max-width: 700px) {

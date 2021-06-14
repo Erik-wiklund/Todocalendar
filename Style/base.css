@@ -48,3 +48,15 @@ body {
 .no-margin-on-p > p{
     margin: 0;
 }
+
+.bottom-zero{
+    position: absolute;
+    bottom: 0;
+}
+
+.bla{
+    align-self: flex-end;
+}
+.inline-flex{
+    display: inline-flex;
+}

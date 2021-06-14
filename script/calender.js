@@ -17,15 +17,24 @@ function createCalender() {
     const firstWeekdayInMonth = findFirstWeekDay(selectedMonth, selectedYear);
 
     for (let i = 0; i < gridSize; i++) {
-        const dayDiv = document.createElement("div");        
+        const dayDiv = document.createElement("div");
         if (i < firstWeekdayInMonth) {
             dayDiv.innerText = numberOfDayPrevouslyMonth - (firstWeekdayInMonth - 1 - i);
             dayDiv.className = "grey";
         }
         else if (i < firstWeekdayInMonth + numberOfDays) {
             dayDiv.id = selectedYear + "." + selectedMonth + "." + (i - firstWeekdayInMonth + 1);
-            dayDiv.innerText = i - firstWeekdayInMonth + 1;
+            dayDiv.innerHTML = i - firstWeekdayInMonth + 1;
             dayDiv.addEventListener("click", showTodos);
+
+            if (todoDictionary[dayDiv.id] && todoDictionary[dayDiv.id].length > 0) {
+
+                var numberoftodos = todoDictionary[dayDiv.id].length;
+                let number = document.createElement("div");
+                number.className = "task-div";
+                number.innerText = numberoftodos;
+                dayDiv.append(number);
+            }
 
             if (prevSelected && prevSelected.id === dayDiv.id) {
                 prevSelected = dayDiv;
@@ -43,8 +52,7 @@ function createCalender() {
     const calenderHeader = document.getElementById("calender-header");
     const h2Div = document.querySelector("div.calender-weekdays-header > h2");
 
-    if (h2Div) 
-    { 
+    if (h2Div) {
         h2Div.innerText = months[selectedMonth] + " " + selectedYear;
     }
     else {
@@ -87,8 +95,7 @@ function nextMonth() {
 }
 
 function showTodos(event) {
-    if(prevSelected)
-    {
+    if (prevSelected) {
         prevSelected.classList = "";
     }
     prevSelected = event.target;
