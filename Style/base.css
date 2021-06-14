@@ -25,10 +25,26 @@ body {
     align-items: center;
 }
 
+.space-around{
+    justify-content: space-between;
+}
+
 .grey{
     color: grey;
 }
 
 .black{
     color: black;
+}
+
+.selectedDiv{
+    background-color: gold !important;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.no-margin-on-p > p{
+    margin: 0;
 }
