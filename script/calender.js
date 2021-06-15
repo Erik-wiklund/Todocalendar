@@ -1,9 +1,10 @@
 window.addEventListener("load", main);
 
-function main() {
+async function main() {
+    await fetchCalendarInfo();
+    load();
     addEventListeners();
     createCalender();
-    load();
 }
 
 function createCalender() {
@@ -24,7 +25,7 @@ function createCalender() {
             dayDiv.className = "grey";
         }
         else if (i < firstWeekdayInMonth + numberOfDays) {
-            dayDiv.id = selectedYear + "." + selectedMonth + "." + (i - firstWeekdayInMonth + 1);
+            dayDiv.id = selectedYear + "-" + (selectedMonth + 1) + "-" + (i - firstWeekdayInMonth + 1);
             dayDiv.innerHTML = i - firstWeekdayInMonth + 1;
             dayDiv.addEventListener("click", showTodos);
 
@@ -40,6 +41,11 @@ function createCalender() {
             if (prevSelected && prevSelected.id === dayDiv.id) {
                 prevSelected = dayDiv;
                 dayDiv.classList.add("selectedDiv");
+            }
+            
+            // Kontrollera om helgdag
+            if (swedishWeekends.find(x => x == formatDate(dayDiv.id))) {
+                dayDiv.className = 'red';
             }
         }
         else {

@@ -37,6 +37,10 @@ body {
     color: black;
 }
 
+.red{
+    color: red;
+}
+
 .selectedDiv{
     background-color: gold !important;
 }
