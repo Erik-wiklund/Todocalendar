@@ -44,8 +44,13 @@ function createCalender() {
             }
             
             // Kontrollera om helgdag
-            if (swedishWeekends.find(x => x == formatDate(dayDiv.id))) {
-                dayDiv.className = 'red';
+            const sweholiday = swedishWeekends.find(x => x.date == formatDate(dayDiv.id));
+            if (sweholiday) {
+                dayDiv.className = "red";
+                const dayName = document.createElement("p");
+                
+                dayName.innerText = sweholiday.holiday;
+                dayDiv.append(dayName);
             }
         }
         else {

@@ -5,23 +5,17 @@ async function fetchCalendarInfo() {
     const response = await fetch(url);
     const data = await response.json();
 
-    // Kan kommenteras bort sedan, skriver enbart ut
-    // månadens dagar + information om dessa
-    console.log(data.dagar); 
-
     // Lägger svenska helgdagar till lokal array
     for (const day of data.dagar) {
         if (day['helgdag']) {
             console.log(day['datum']);
-            swedishWeekends.push(day['datum']);
+            console.log(day['helgdag']);
+            swedishWeekends.push({
+                date: day['datum'],
+                holiday: day['helgdag']
+            });
         }
     }
-}
-
-// Funktion för att faktiskt kontrollera 
-// om dagen i fråga är en helgdag
-function checkIfSweWeekend(day) {
-    
 }
 
 // Hämtad från StackOverflow
