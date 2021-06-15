@@ -3,6 +3,7 @@ window.addEventListener("load", main);
 function main() {
     addEventListeners();
     createCalender();
+    load();
 }
 
 function createCalender() {

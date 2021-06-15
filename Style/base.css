@@ -58,11 +58,6 @@ body {
     margin-right: 1em;
 }
 
-.bottom-zero{
-    position: absolute;
-    bottom: 0;
-}
-
 .bla{
     align-self: flex-end;
 }
