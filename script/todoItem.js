@@ -42,7 +42,7 @@ function createTodoList(id) {
     todoList.innerText = "";
 
     const addTodoDiv = document.createElement("div");
-    addTodoDiv.className = ("full-width" + " flex" + " space-around");
+    addTodoDiv.className = ("full-width flex space-between");
 
     addTodoDiv.innerHTML = "<p>Lägg till nytt Todo</p>";
 
@@ -59,9 +59,11 @@ function fillTodoList() {
     for (let todo of todoDictionary[local_id]) {
         const todoList = document.querySelector(".todo-item-list");
         const newTodoDiv = document.createElement("div");
-        newTodoDiv.className = ("full-width" + " flex" + " space-around" + " no-margin-on-p");
+        newTodoDiv.className = ("full-width flex space-between no-margin-on-p");
 
-        const todoText = document.createElement("p").innerText = todo;
+        const todoText = document.createElement("p");
+        todoText.addEventListener("click", editTodo);
+        todoText.innerText = todo;
 
         const minusButton = document.createElement("p");
         minusButton.addEventListener("click", removeTodo);
@@ -76,8 +78,7 @@ function fillTodoList() {
 }
 
 function addNewTodo() {
-    let a = todoDictionary[local_id];
-    if (!a) {
+    if (!todoDictionary[local_id]) {
         todoDictionary[local_id] = [];
     }
 
@@ -106,15 +107,32 @@ function addNewTodo() {
 function removeTodo(event) {
     let removeArray = [];
     removeArray = JSON.parse(localStorage.getItem('todo_list'));
-    let text = event.target.parentNode.childNodes[0].wholeText;
-    for (let i = 0; i < todoDictionary[local_id].length; i++) {
-        if (todoDictionary[local_id][i] === text) {
-            todoDictionary[local_id].splice(i, 1);
-            removeArray.splice(i, 1);
-            break;
-        }
+    let text = event.target.parentNode.childNodes[0].innerText;
+    const index = getStringIndex(text);
+
+    if (index || index === 0) {
+        todoDictionary[local_id].splice(index, 1);
+        removeArray.splice(i, 1);
     }
     localStorage.setItem("todo_list", JSON.stringify(removeArray));
     createTodoList(local_id);
     createCalender();
+}
+
+function editTodo(event) {
+    const text = event.target.innerText;
+    const index = getStringIndex(text);
+
+    if (index || index === 0) {
+        const newTodo = prompt("Ändra Todo", text);
+        if (newTodo) {
+            todoDictionary[local_id][index] = newTodo;
+        }
+    }
+
+    createTodoList(local_id);
+}
+
+function getStringIndex(string) {
+    return todoDictionary[local_id].findIndex(x => x === string);
 }
