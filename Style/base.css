@@ -38,7 +38,7 @@ body {
 }
 
 .selectedDiv{
-    background-color: gold !important;
+    background-color: lightskyblue !important;
 }
 
 .full-width{
@@ -63,4 +63,8 @@ body {
 }
 .inline-flex{
     display: inline-flex;
+}
+
+.white {
+    color: whitesmoke;
 }
