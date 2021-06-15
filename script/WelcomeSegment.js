@@ -25,4 +25,4 @@ function printTimeOfDay() {
 
     document.getElementById('clock').innerHTML = t_str;
 }
-//setInterval(printTimeOfDay, 1000);
+setInterval(printTimeOfDay, 1000);

@@ -1,18 +1,11 @@
 {
-    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch localhost",
-            "type": "firefox",
+            "name": "Launch Chrome",
             "request": "launch",
-            "reAttach": true,
+            "type": "pwa-chrome",
             "url": "http://localhost:5500",
-            "pathMappings": [
-                {
-                    "url": "http://localhost:5500",
-                    "path": "${workspaceFolder}"
-                }
-            ]
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

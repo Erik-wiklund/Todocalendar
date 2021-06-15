@@ -3,24 +3,31 @@ let local_id;
 
 function load() {
     todoDictionary.length = 0;
-    todoDictionary = JSON.parse(localStorage.getItem('todo_list'));
+    todoDictionary = JSON.parse(localStorage.getItem('todo_list').replace(null, '""'));
     for (let i = 0; i < todoDictionary.length; i++) {
         local_id = (todoDictionary[i].local_id);
         todo = (todoDictionary[i].todo);
-        console.log(local_id + "    " + todo);
-    }
-
-}
-
-function initstoredtodos() {
-    for (let i = 0; i < todoDictionary.length; i++) {
-        let test = "";
-        test.append(todoDictionary[i].local_id);
-        fillTodoList();
-        console.log(test);
+        addStoredTodo();
     }
 }
 
+function addStoredTodo() {
+
+    if (!todoDictionary[local_id]) {
+        todoDictionary[local_id] = [];
+    }
+    todoDictionary[local_id].push(todo);
+    if (todo) {
+        for (let todo of todoDictionary[local_id]) {
+            const newTodoDiv = document.createElement("div");
+            newTodoDiv.className = ("full-width" + " flex" + " space-around" + " no-margin-on-p");
+            const minusButton = document.createElement("p");
+            minusButton.addEventListener("click", removeTodo);
+            minusButton.innerText = "-";
+        }
+    }
+    createCalender();
+}
 
 function createTodoList(id) {
     local_id = id;
@@ -97,15 +104,17 @@ function addNewTodo() {
 }
 
 function removeTodo(event) {
-
+    let removeArray = [];
+    removeArray = JSON.parse(localStorage.getItem('todo_list'));
     let text = event.target.parentNode.childNodes[0].wholeText;
-
     for (let i = 0; i < todoDictionary[local_id].length; i++) {
         if (todoDictionary[local_id][i] === text) {
             todoDictionary[local_id].splice(i, 1);
+            removeArray.splice(i, 1);
             break;
         }
     }
+    localStorage.setItem("todo_list", JSON.stringify(removeArray));
     createTodoList(local_id);
     createCalender();
 }
