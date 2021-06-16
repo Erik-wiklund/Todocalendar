@@ -2,7 +2,11 @@ window.addEventListener("load", main);
 
 
 async function main() {
-    await fetchCalendarInfo();
+    try {
+        await fetchCalendarInfo();
+    } catch (error) {
+        console.error(error);
+    }
     load();
     addEventListeners();
     createCalender();
