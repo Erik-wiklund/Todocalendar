@@ -1,9 +1,9 @@
 window.addEventListener("load", main);
 
 function main() {
+    load();
     addEventListeners();
     createCalender();
-    load();
 }
 
 function createCalender() {
@@ -28,13 +28,15 @@ function createCalender() {
             dayDiv.innerHTML = i - firstWeekdayInMonth + 1;
             dayDiv.addEventListener("click", showTodos);
 
-            if (todoDictionary[dayDiv.id] && todoDictionary[dayDiv.id].length > 0) {
+            if (todoDictionary.length && todoDictionary.find(x => x.key === dayDiv.id)) {
 
-                var numberoftodos = todoDictionary[dayDiv.id].length;
-                let number = document.createElement("div");
-                number.className = "task-div";
-                number.innerText = numberoftodos;
-                dayDiv.append(number);
+                var numberoftodos = todoDictionary.find(x => x.key === dayDiv.id).value.length;
+                if (numberoftodos > 0) {
+                    let number = document.createElement("div");
+                    number.className = "task-div";
+                    number.innerText = numberoftodos;
+                    dayDiv.append(number);
+                }
             }
 
             if (prevSelected && prevSelected.id === dayDiv.id) {
@@ -104,10 +106,10 @@ function showTodos(event) {
     if (prevSelected) {
         prevSelected.classList = "";
     }
-    
+
     prevSelected = event.target;
     event.target.classList.add("selectedDiv");
-    createTodoList(event.target.id);
+    initTodoList(event.target.id);
 }
 
 function findFirstWeekDay(monthInt, yearInt) {
