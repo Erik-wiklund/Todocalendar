@@ -34,17 +34,21 @@ function createCalender() {
             if (todoDictionary.length && todoDictionary.find(x => x.key === dayDiv.id)) {
 
                 var numberoftodos = todoDictionary.find(x => x.key === dayDiv.id).value.length;
-                if (2 > numberoftodos > 0) {
+                if (numberoftodos > 0) {
+
                     let number = document.createElement("div");
-                    number.className = "task-div";
-                    number.innerText = (numberoftodos + ' uppgift idag');
-                    dayDiv.append(number);
-                }
-                else if (numberoftodos > 1) {
-                    let number = document.createElement("div");
-                    number.className = "task-div";
-                    number.innerText = (numberoftodos + ' uppgifter idag');
-                    dayDiv.append(number);
+                    const posdiv = document.createElement("div");
+                    posdiv.className = "position-absolute-task"
+                    number.className = "overflow";
+
+                    if (2 > numberoftodos > 0) {
+                        number.innerText = (numberoftodos + ' uppgift idag');
+                    } else {
+                        number.innerText = (numberoftodos + ' uppgifter idag');
+                    };
+
+                    posdiv.append(number);
+                    dayDiv.append(posdiv);
                 }
             }
 
