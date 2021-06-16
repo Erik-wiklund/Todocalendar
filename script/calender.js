@@ -115,7 +115,11 @@ async function previousMonth() {
     if (selectedMonth < 0) {
         selectedMonth = 11;
         selectedYear--;
-        await fetchCalendarInfo();
+        try {
+            await fetchCalendarInfo();
+        } catch (error) {
+            console.error(error);
+        }
     }
     createCalender();
 }
@@ -126,7 +130,11 @@ async function nextMonth() {
     if (selectedMonth > 11) {
         selectedMonth = 0;
         selectedYear++;
-        await fetchCalendarInfo();
+        try {
+            await fetchCalendarInfo();
+        } catch (error) {
+            console.error(error);
+        }
     }
     createCalender();
 }
