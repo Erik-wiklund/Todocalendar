@@ -72,3 +72,14 @@ body {
 .white {
     color: whitesmoke;
 }
+
+.position-absolute{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.overflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

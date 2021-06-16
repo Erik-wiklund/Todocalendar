@@ -45,15 +45,21 @@ function createCalender() {
                 prevSelected = dayDiv;
                 dayDiv.classList.add("selectedDiv");
             }
-            
+
             // Kontrollera om helgdag
             const sweholiday = swedishWeekends.find(x => x.date == formatDate(dayDiv.id));
             if (sweholiday) {
-                dayDiv.className = "red";
+                dayDiv.className = "red overflow";
+
                 const dayName = document.createElement("p");
-                
+                const posdiv = document.createElement("div");
+
+                posdiv.className = "position-absolute"
+                dayName.className = "overflow"
+
                 dayName.innerText = sweholiday.holiday;
-                dayDiv.append(dayName);
+                dayDiv.append(posdiv);
+                posdiv.append(dayName);
             }
         }
         else {
@@ -87,25 +93,25 @@ function addEventListeners() {
     nextButton.addEventListener("click", nextMonth);
 }
 
-function previousMonth() {
+async function previousMonth() {
     selectedMonth--;
 
     if (selectedMonth < 0) {
         selectedMonth = 11;
         selectedYear--;
+        await fetchCalendarInfo();
     }
-
     createCalender();
 }
 
-function nextMonth() {
+async function nextMonth() {
     selectedMonth++;
 
     if (selectedMonth > 11) {
         selectedMonth = 0;
         selectedYear++;
+        await fetchCalendarInfo();
     }
-
     createCalender();
 }
 

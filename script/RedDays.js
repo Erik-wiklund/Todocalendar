@@ -1,7 +1,7 @@
 const swedishWeekends = []; // array av röda dagar för aktuell månad
 
 async function fetchCalendarInfo() {
-    const url = 'https://api.dryg.net/dagar/v2.1/' + selectedYear + '/' + (selectedMonth + 1);
+    const url = 'https://api.dryg.net/dagar/v2.1/' + selectedYear;
     const response = await fetch(url);
     const data = await response.json();
 
