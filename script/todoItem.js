@@ -3,14 +3,14 @@ let local_id;
 
 function load() {
     todoDictionary.length = 0;
-  //  if (localStorage.getItem('todo_list')) {
-  //      todoDictionary = JSON.parse(localStorage.getItem('todo_list'));
-  //  }
+    //  if (localStorage.getItem('todo_list')) {
+    //      todoDictionary = JSON.parse(localStorage.getItem('todo_list'));
+    //  }
 
-   // for (let i = 0; i < todoDictionary.length; i++) {
+    // for (let i = 0; i < todoDictionary.length; i++) {
     //    local_id = (todoDictionary[i].local_id);
-      //  todo = (todoDictionary[i].todo);
-       // addStoredTodo();
+    //  todo = (todoDictionary[i].todo);
+    // addStoredTodo();
 
     if (localStorage.getItem('todo_list')) {
         todoDictionary = JSON.parse(localStorage.getItem('todo_list'));
@@ -129,8 +129,8 @@ function removeTodo(event) {
     const index = getStringIndex(text);
 
     if (index || index === 0) {
-       // todoDictionary[local_id].splice(index, 1);
-       // removeArray.splice(index, 1);
+        // todoDictionary[local_id].splice(index, 1);
+        // removeArray.splice(index, 1);
 
         todoDictionary.find(x => x.key === local_id).value.splice(index, 1);
     }

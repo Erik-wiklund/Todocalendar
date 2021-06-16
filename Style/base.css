@@ -43,8 +43,8 @@ body {
 
 .selectedDiv{
     background-color: lightskyblue !important;
+    cursor: pointer;
 }
-
 .full-width{
     width: 100%;
 }
@@ -77,9 +77,14 @@ body {
     position:absolute;
     height: 100%;
     width: 100%;
+    pointer-events: none;
 }
 
 .overflow{
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.pointer{
+    cursor: pointer;
 }

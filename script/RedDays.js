@@ -8,8 +8,8 @@ async function fetchCalendarInfo() {
     // Lägger svenska helgdagar till lokal array
     for (const day of data.dagar) {
         if (day['helgdag']) {
-            console.log(day['datum']);
-            console.log(day['helgdag']);
+            //console.log(day['datum']);
+            //console.log(day['helgdag']);
             swedishWeekends.push({
                 date: day['datum'],
                 holiday: day['helgdag']

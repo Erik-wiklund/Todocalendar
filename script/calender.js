@@ -29,14 +29,21 @@ function createCalender() {
             dayDiv.id = selectedYear + "-" + (selectedMonth + 1) + "-" + (i - firstWeekdayInMonth + 1);
             dayDiv.innerHTML = i - firstWeekdayInMonth + 1;
             dayDiv.addEventListener("click", showTodos);
+            dayDiv.classList.add("pointer");
 
             if (todoDictionary.length && todoDictionary.find(x => x.key === dayDiv.id)) {
 
                 var numberoftodos = todoDictionary.find(x => x.key === dayDiv.id).value.length;
-                if (numberoftodos > 0) {
+                if (2 > numberoftodos > 0) {
                     let number = document.createElement("div");
                     number.className = "task-div";
-                    number.innerText = numberoftodos;
+                    number.innerText = (numberoftodos + ' uppgift idag');
+                    dayDiv.append(number);
+                }
+                else if (numberoftodos > 1) {
+                    let number = document.createElement("div");
+                    number.className = "task-div";
+                    number.innerText = (numberoftodos + ' uppgifter idag');
                     dayDiv.append(number);
                 }
             }
@@ -49,7 +56,7 @@ function createCalender() {
             // Kontrollera om helgdag
             const sweholiday = swedishWeekends.find(x => x.date == formatDate(dayDiv.id));
             if (sweholiday) {
-                dayDiv.className = "red overflow";
+                dayDiv.className = "red pointer";
 
                 const dayName = document.createElement("p");
                 const posdiv = document.createElement("div");
@@ -58,8 +65,9 @@ function createCalender() {
                 dayName.className = "overflow"
 
                 dayName.innerText = sweholiday.holiday;
-                dayDiv.append(posdiv);
                 posdiv.append(dayName);
+                dayDiv.append(posdiv);
+
             }
         }
         else {
@@ -117,17 +125,22 @@ async function nextMonth() {
 
 function showTodos(event) {
 
-    if (event.target !== this) {
-        return;
+    if (prevSelected == null) {
+        prevSelected = event.target.id;
+        newSelected = event.target;
+        event.target.classList.toggle("selectedDiv");
+        initTodoList(event.target.id);
     }
-
-    if (prevSelected) {
-        prevSelected.classList = "";
+    else if (event.target.id !== prevSelected && prevSelected !== null) {
+        newSelected.classList.remove("selectedDiv");
+        event.target.classList.toggle("selectedDiv")
+        prevSelected = event.target.id;
+        newSelected = event.target;
+        initTodoList(event.target.id);
     }
-
-    prevSelected = event.target;
-    event.target.classList.add("selectedDiv");
-    initTodoList(event.target.id);
+    else if (event.target.id == event.target.id) {
+        event.target.classList.toggle("selectedDiv");
+    }
 }
 
 function findFirstWeekDay(monthInt, yearInt) {
@@ -147,5 +160,6 @@ function getMonthDays(monthInt, yearInt) {
 const gridSize = 42;
 let selectedMonth = new Date().getMonth();
 let selectedYear = new Date().getFullYear();
-let prevSelected;
+let prevSelected = null;
+let newSelected;
 var months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
