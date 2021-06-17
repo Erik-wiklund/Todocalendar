@@ -1,6 +1,5 @@
 .calender-grid{
     display: grid;
-    overflow: auto;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 50px 25px;
     border: 1px solid grey;
@@ -9,13 +8,6 @@
     position: relative;
     grid-template-areas: 
     "header header header header header header header";
-}
-
-.calender-grid:after {
-    content: "";
-    display: block;
-    height: 5px;
-    width: 100%;
 }
 
 .calender-weekdays-header{
@@ -31,6 +23,8 @@
     font-weight: bold;
     transition: 0.5s;
 }
+
+
 
 @media (max-width: 700px) {
     .calender-grid{
