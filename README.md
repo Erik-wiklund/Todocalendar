@@ -9,7 +9,7 @@
 - [x] Spara todos i local storage och visa dessa vid omladdning av sidan - (VG)
 - [x] Användaren skall kunna ändra en todo - (VG)
 - [x] Användaren skall kunna växa till andra månader i kalendervyn - (VG)
-- [ ] Svenska helgdagar visas i kalendern - (VG)
+- [x] Svenska helgdagar visas i kalendern - (VG)
 - [x] Filtrera todolistan utifrån vald dag i kalendern, det ska gå avmarkera vald dag (VG)
 
 ### Annat att göra:
