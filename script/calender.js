@@ -28,12 +28,14 @@ function createCalender() {
         if (i < firstWeekdayInMonth) {
             dayDiv.innerText = numberOfDayPrevouslyMonth - (firstWeekdayInMonth - 1 - i);
             dayDiv.className = "grey";
+            dayDiv.classList.add("min-height-calender");
         }
         else if (i < firstWeekdayInMonth + numberOfDays) {
             dayDiv.id = selectedYear + "-" + (selectedMonth + 1) + "-" + (i - firstWeekdayInMonth + 1);
             dayDiv.innerHTML = i - firstWeekdayInMonth + 1;
             dayDiv.addEventListener("click", showTodos);
             dayDiv.classList.add("pointer");
+            dayDiv.classList.add("min-height-calender");
 
             if (todoDictionary.length && todoDictionary.find(x => x.key === dayDiv.id)) {
 
@@ -56,10 +58,11 @@ function createCalender() {
                 }
             }
 
-            if (prevSelected && prevSelected.id === dayDiv.id) {
-                prevSelected = dayDiv;
-                dayDiv.classList.add("selectedDiv");
-            }
+            //if (prevSelected && prevSelected.id === dayDiv.id) {
+            //    prevSelected = dayDiv;
+            //    dayDiv.classList.add("selectedDiv");
+            //}
+            //gör denna något????
 
             // Kontrollera om helgdag
             const sweholiday = swedishWeekends.find(x => x.date == formatDate(dayDiv.id));
@@ -81,6 +84,7 @@ function createCalender() {
         else {
             dayDiv.innerText = i - (numberOfDays + firstWeekdayInMonth - 1);
             dayDiv.className = "grey";
+            dayDiv.classList.add("min-height-calender");
         }
 
         calenderGrid.append(dayDiv);

@@ -87,13 +87,19 @@ body {
     left: 0;
     padding: 5px;
     pointer-events: none;
+
 }
 
 .overflow{
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 
 .pointer{
     cursor: pointer;
+}
+
+.min-height-calender{
+    min-height: 135px;
 }
