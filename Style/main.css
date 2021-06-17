@@ -13,7 +13,8 @@ main{
 }
 
 header{
-    background-image: linear-gradient(cornflowerblue, darkblue);
+    /* background-image: linear-gradient(cornflowerblue, darkblue); */
+    background-color: black;
     color: whitesmoke;
     font-size: 20px;
     height: 3rem;

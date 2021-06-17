@@ -1,7 +1,5 @@
 .calender-grid{
     display: grid;
-    background-image:url("/img/mountains.jpg");
-    background-size: 100%;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 50px 25px;
     border: 1px solid grey;
@@ -11,6 +9,28 @@
     grid-template-areas: 
     "header header header header header header header";
 }
+
+.calendar-grid-image-fall{
+    background-image:url("/img/season-fall.jpg");
+    background-size: 100%;
+}
+
+.calendar-grid-image-winter{
+    background-image:url("/img/season-winter.jpg");
+    background-size: 100%;
+}
+
+.calendar-grid-image-spring{
+    background-image:url("/img/season-spring.jpg");
+    background-size: cover;
+}
+
+.calendar-grid-image-summer{
+    background-image:url("/img/season-summer.png");
+    background-size: cover;
+}
+
+
 
 .calender-weekdays-header{
     grid-area: header;
@@ -33,7 +53,7 @@
     position:absolute;
     bottom:5px;
     left: 0;
-    color: blue;
+    /* color: blue; */
 }
 
 @media (max-width: 1000px) {

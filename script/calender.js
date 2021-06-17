@@ -66,16 +66,41 @@ function createCalender() {
 
     const calenderHeader = document.getElementById("calender-header");
     const h2Div = document.querySelector("div.calender-weekdays-header > h2");
-
+    // Skriver ut månad + år
     if (h2Div) {
         h2Div.innerText = months[selectedMonth] + " " + selectedYear;
+        changeBackgroundImageAccordingToSeason(months[selectedMonth]);
     }
     else {
         const h2Div = document.createElement("h2");
         h2Div.innerText = months[selectedMonth] + " " + selectedYear;
+        changeBackgroundImageAccordingToSeason(months[selectedMonth]);
         const nextMonth = document.getElementById("next-month");
 
         calenderHeader.insertBefore(h2Div, nextMonth);
+    }
+}
+
+// Function for changing background image
+function changeBackgroundImageAccordingToSeason(month) {
+    if (month == 'September' || month == 'Oktober' || month == 'November') {
+        const divToChange = document.getElementById('calender');
+        divToChange.classList.remove('calendar-grid-image-winter', 'calendar-grid-image-spring', 'calendar-grid-image-summer');
+        divToChange.classList.add('calendar-grid-image-fall');
+    } else if(month == 'Juni' || month == 'Juli' || month == 'Augusti'){
+        const divToChange = document.getElementById('calender');
+        divToChange.classList.remove('calendar-grid-image-winter', 'calendar-grid-image-spring', 'calendar-grid-image-fall');
+        divToChange.classList.add('calendar-grid-image-summer');
+    }
+    else if(month == 'December' || month == 'Januari' || month == 'Februari') {
+        const divToChange = document.getElementById('calender');
+        divToChange.classList.remove('calendar-grid-image-fall', 'calendar-grid-image-spring', 'calendar-grid-image-summer');
+        divToChange.classList.add('calendar-grid-image-winter');
+    }
+    else if(month == 'Mars' || month == 'April' || month == 'Maj') {
+        const divToChange = document.getElementById('calender');
+        divToChange.classList.remove('calendar-grid-image-winter', 'calendar-grid-image-fall', 'calendar-grid-image-summer');
+        divToChange.classList.add('calendar-grid-image-spring');
     }
 }
 

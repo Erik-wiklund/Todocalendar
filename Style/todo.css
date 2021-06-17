@@ -1,12 +1,13 @@
 .todo-header{
-    background-color: cornflowerblue;
+    background-color: rgb(255, 162, 119);
     flex-grow: 1;
-    background-image: linear-gradient(cornflowerblue, darkblue);
+    /* background-image: linear-gradient(rgb(252, 186, 99)); */
 }
 
 .todo-item-list{
-    background-color: cornflowerblue;
-    background-image: linear-gradient(cornflowerblue, darkblue);
+    border-top: 1px solid white;
+    background-color: rgb(255, 162, 119);
+    /* background-image: linear-gradient(rgb(252, 186, 99), rgb(255, 102, 0)); */
     flex-grow: 2;
     padding: 5px; /* Padding för todo-listan, ser bättre ut */
 }
