@@ -58,10 +58,10 @@ function createCalender() {
                 }
             }
 
-            //if (prevSelected && prevSelected.id === dayDiv.id) {
-            //    prevSelected = dayDiv;
-            //    dayDiv.classList.add("selectedDiv");
-            //}
+            /*if (prevSelected && prevSelected.id === dayDiv.id) {
+                prevSelected = dayDiv;
+                dayDiv.classList.add("selectedDiv");
+            }*/
             //gör denna något????
 
             // Kontrollera om helgdag
@@ -160,18 +160,8 @@ function showTodos(event) {
     }
     else if (event.target.id == event.target.id) {
         event.target.classList.toggle("selectedDiv");
+        initTodoList(event.target.id);
     }
-
-    if (prevSelected === event.target)
-    {
-        prevSelected = undefined;
-    }
-    else{
-        prevSelected = event.target;
-        event.target.classList.add("selectedDiv");
-    }
-    initTodoList(event.target.id);
-
 }
 
 function findFirstWeekDay(monthInt, yearInt) {
