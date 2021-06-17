@@ -11,13 +11,14 @@
 }
 
 .calendar-grid-image-fall{
-    background-image:url("/img/season-fall.jpg");
-    background-size: 100%;
+    background-image:url("/img/fall-test.png");
+    background-size: cover;
+    /* background-repeat: no-repeat; */
 }
 
 .calendar-grid-image-winter{
-    background-image:url("/img/season-winter.jpg");
-    background-size: 100%;
+    background-image:url("/img/winter-test2.png");
+    background-size: cover;
 }
 
 .calendar-grid-image-spring{
@@ -26,11 +27,9 @@
 }
 
 .calendar-grid-image-summer{
-    background-image:url("/img/season-summer.png");
-    background-size: cover;
+    background-image:url("/img/summer-test.png");
+    background-size:cover;
 }
-
-
 
 .calender-weekdays-header{
     grid-area: header;
@@ -43,7 +42,7 @@
     position: relative;
     font-weight: bolder;
     cursor: pointer;
-    opacity: 80%; /* Blir nog snyggast så här */
+    opacity: 85%; /* Blir nog snyggast så här */
     padding: 5px; /* Padding för siffrorna i div:en */
     word-wrap: break-word;
     hyphens: auto;
