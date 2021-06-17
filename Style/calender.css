@@ -3,6 +3,7 @@
     background-color: white;
     min-height: 31em;
 }
+/*behövs denna???*/
 
 .calender-grid{
     display: grid;
