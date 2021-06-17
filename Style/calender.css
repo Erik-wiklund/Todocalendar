@@ -18,12 +18,9 @@
     background-color: whitesmoke;
     min-width: 3.5em;
     position: relative;
-}
-
-.task-div{
-    position:absolute;
-    bottom:0;
-    right:0;
+    padding: 5px;
+    font-weight: bold;
+    transition: 0.5s;
 }
 
 @media (max-width: 700px) {
@@ -40,8 +37,7 @@
     align-items: center;
     border-radius: 4px;
     color:grey;
-    font-size: 10px;
-    padding: 0 16px;
+    font-size: 11px;
     height: 20px;
     width: 75px;
     cursor: pointer;

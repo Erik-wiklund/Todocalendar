@@ -111,6 +111,7 @@ function removeTodo(todoObject, todo) {
 
     const index = getIndexInArrayByString(todoObject, todo);
 
+
     if (index || index === 0) {
         todoDictionary.find(obj => obj === todoObject).value.splice(index, 1);
     }
