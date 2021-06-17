@@ -1,11 +1,20 @@
+.calender{
+    grid-area: calender;
+    background-color: white;
+    min-height: 31em;
+}
+
 .calender-grid{
     display: grid;
+    overflow-y: auto;
+    grid-area: calender;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 50px 25px;
     border: 1px solid grey;
-    gap: 1em;
+    gap: 0.5em;
     padding: 1em;
     position: relative;
+    min-height: 13px;
     grid-template-areas: 
     "header header header header header header header";
 }
@@ -16,16 +25,27 @@
 
 .calender-grid > div{
     background-color: whitesmoke;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
     min-width: 3.5em;
     position: relative;
     padding: 5px;
+    border-radius: 0.5em;
     font-weight: bold;
-    transition: 0.5s;
+    transition: 0.25s;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
     .calender-grid{
         display: none;
+    }
+}
+
+@media (max-height: 875px) {
+    .calender-grid:after{
+    content: "";
+    display: block;
+    height: 10px;
+    width: 100%;
     }
 }
 

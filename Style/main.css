@@ -3,7 +3,6 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
-    background-color: orange;
     grid-template-areas: 
     "sidepanel calender calender calender";
 }
@@ -21,16 +20,10 @@ header{
 
 .todo-side-panel{
     grid-area: sidepanel;
-    background-color: pink;
 }
+/* behövs denna??? */
 
-.calender{
-    grid-area: calender;
-    background-color: white;
-    min-height: 31em;
-}
-
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
 
     main{
         grid-template-areas: 

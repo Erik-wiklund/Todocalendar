@@ -45,6 +45,7 @@ body {
     background-color: lightskyblue !important;
     cursor: pointer;
 }
+
 .full-width{
     width: 100%;
 }
@@ -52,7 +53,6 @@ body {
 .no-margin-on-p > p{
     margin: 0;
 }
-
  
 .margin-left {
     margin-left: 1em;
@@ -87,7 +87,7 @@ body {
     left: 0;
     padding: 5px;
     pointer-events: none;
-
+    color: black;
 }
 
 .overflow{
@@ -101,5 +101,5 @@ body {
 }
 
 .min-height-calender{
-    min-height: 135px;
+    min-height: 100px;
 }
