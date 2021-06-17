@@ -25,6 +25,8 @@ body {
     align-items: center;
 }
 
+.justify-evenly { justify-content: space-evenly;}
+
 .space-between{
     justify-content: space-between;
 }
@@ -41,9 +43,22 @@ body {
     color: red;
 }
 
-.selectedDiv{
-    background-color: rgb(255, 202, 103) !important;
+.selectedDiv-fall{
+    background-color: orange !important;
 }
+
+.selectedDiv-winter {
+    background-color: rgb(91, 141, 216) !important;
+}
+
+.selectedDiv-spring {
+    background-color: rgb(158, 207, 68) !important;
+}
+
+.selectedDiv-summer {
+    background-color: gold !important;
+}
+
 
 .full-width{
     width: 100%;
