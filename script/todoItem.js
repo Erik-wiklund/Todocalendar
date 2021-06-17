@@ -3,49 +3,19 @@ let local_id;
 
 function load() {
     todoDictionary.length = 0;
-  //  if (localStorage.getItem('todo_list')) {
-  //      todoDictionary = JSON.parse(localStorage.getItem('todo_list'));
-  //  }
-
-   // for (let i = 0; i < todoDictionary.length; i++) {
-    //    local_id = (todoDictionary[i].local_id);
-      //  todo = (todoDictionary[i].todo);
-       // addStoredTodo();
 
     if (localStorage.getItem('todo_list')) {
         todoDictionary = JSON.parse(localStorage.getItem('todo_list'));
     }
-    // for (let i = 0; i < todoDictionary.length; i++) {
-    //     local_id = (todoDictionary[i].local_id);
-    //     todo = (todoDictionary[i].todo);
-    //     addStoredTodo();
-    // }
-}
 
-function addStoredTodo() {
-    if (!todoDictionary[local_id]) {
-        todoDictionary.push({
-            key: local_id,
-            value: []
-        });
-    }
-    todoDictionary[local_id].push(todo);
-    if (todo) {
-        for (let todo of todoDictionary[local_id]) {
-            const newTodoDiv = document.createElement("div");
-            newTodoDiv.className = ("full-width" + " flex" + " space-around" + " no-margin-on-p");
-            const minusButton = document.createElement("p");
-            minusButton.addEventListener("click", removeTodo);
-            minusButton.innerText = "-";
-        }
-    }
-    createCalender();
+    initTodoList(local_id);
 }
 
 function initTodoList(id) {
-    local_id = id;
+    local_id = ((local_id === id ? undefined : id));
 
     createTodoList();
+    fillTodoList();
 }
 
 function createTodoList() {
@@ -53,39 +23,66 @@ function createTodoList() {
     const todoList = document.querySelector(".todo-item-list");
     todoList.innerText = "";
 
-    const addTodoDiv = document.createElement("div");
-    addTodoDiv.className = ("full-width flex space-between");
+    const addTodoDiv = createElementWithClassName("div", "full-width flex space-between");
 
-    addTodoDiv.innerHTML = "<p>Lägg till nytt Todo</p>";
+    if (local_id) {
+        addTodoDiv.innerHTML = "<p>Lägg till nytt Todo</p>";
 
-    const plusbutton = document.createElement("p");
-    plusbutton.innerText = "+";
-    plusbutton.addEventListener("click", addNewTodo);
-    addTodoDiv.append(plusbutton);
+        const plusbutton = createElementWithClickEventAndCustomText("p", addNewTodo, "+");
+        addTodoDiv.append(plusbutton);
+    }
+    else {
+        addTodoDiv.innerHTML = "<p>Nuvarande Todos</p>";
+    }
+
     todoList.append(addTodoDiv);
-    fillTodoList();
 }
 
 function fillTodoList() {
-    for (let todo of todoDictionary.find(x => x.key === local_id).value) {
-        const todoList = document.querySelector(".todo-item-list");
-        const newTodoDiv = document.createElement("div");
-        newTodoDiv.className = ("full-width flex space-between no-margin-on-p");
 
-        const todoText = document.createElement("p");
-        todoText.addEventListener("click", editTodo);
-        todoText.innerText = todo;
-
-        const minusButton = document.createElement("p");
-        minusButton.addEventListener("click", removeTodo);
-        minusButton.innerText = "-";
-
-        newTodoDiv.append(todoText);
-        newTodoDiv.append(minusButton);
-
-        todoList.append(newTodoDiv);
-
+    let todoObjectList = [];
+    if (local_id) {
+        const currentDayTodoObject = todoDictionary.find(todoObj => todoObj.key === local_id)
+        
+        if (currentDayTodoObject) {
+            todoObjectList.push(currentDayTodoObject);
+        }
     }
+    else {
+        for (const todoListofDay of todoDictionary) {
+            todoObjectList = todoObjectList.concat(todoListofDay);
+        }
+    }
+    for (const todoObject of todoObjectList) {
+        for (const todo of todoObject.value) {
+            const todoListDiv = document.querySelector(".todo-item-list");
+            
+            const newTodoDiv = createElementWithClassName("div", "full-width flex space-between no-margin-on-p");
+
+            const todoText = createElementWithClickEventAndCustomText("p", () => editTodo(todoObject, todo), todo);
+
+            const minusButton = createElementWithClickEventAndCustomText("p", () => removeTodo(todoObject, todo), "-");
+
+            newTodoDiv.append(todoText);
+            newTodoDiv.append(minusButton);
+
+            todoListDiv.append(newTodoDiv);
+
+        }
+    }
+}
+
+function createElementWithClickEventAndCustomText(typeOfElement, functionEventShouldCall, innerText) {
+    const clickableElement = document.createElement(typeOfElement);
+    clickableElement.addEventListener("click", functionEventShouldCall);
+    clickableElement.innerText = innerText;
+    return clickableElement;
+}
+
+function createElementWithClassName(elementType, className){
+    const newElement = document.createElement(elementType);
+    newElement.className = (className);
+    return newElement;
 }
 
 function addNewTodo() {
@@ -104,55 +101,46 @@ function addNewTodo() {
         }
 
         createTodoList();
+        fillTodoList();
         localStorage.setItem('todo_list', JSON.stringify(todoDictionary));
     }
     createCalender();
-
-
-
-    // // IF = array finns i LS
-    // if (localStorage.getItem('todo_list')) {
-    //     const todoArray = JSON.parse(localStorage.getItem('todo_list'));
-    //     todoArray.push({ "local_id": local_id, "todo": todo });
-    //     localStorage.setItem('todo_list', JSON.stringify(todoArray));
-    // }
-    // // ELSE - array finns inte i LS
-    // else {
-    //     const todos = [];
-    //     todos.push({ "local_id": local_id, "todo": todo });
-    //     localStorage.setItem('todo_list', JSON.stringify(todos));
-    // }
 }
 
-function removeTodo(event) {
-    let text = event.target.parentNode.childNodes[0].innerText;
-    const index = getStringIndex(text);
+function removeTodo(todoObject, todo) {
+
+    const index = getIndexInArrayByString(todoObject, todo);
 
     if (index || index === 0) {
-       // todoDictionary[local_id].splice(index, 1);
-       // removeArray.splice(index, 1);
-
-        todoDictionary.find(x => x.key === local_id).value.splice(index, 1);
+        todoDictionary.find(obj => obj === todoObject).value.splice(index, 1);
     }
-    localStorage.setItem("todo_list", JSON.stringify(todoDictionary));
+
+    SaveTodoListToLocalStorage(todoDictionary);
     createTodoList();
+    fillTodoList();
     createCalender();
 }
 
-function editTodo(event) {
-    const text = event.target.innerText;
-    const index = getStringIndex(text);
+function editTodo(todoObject, todo) {
+
+    const index = getIndexInArrayByString(todoObject, todo);
 
     if (index || index === 0) {
-        const newTodo = prompt("Ändra Todo", text);
+        const newTodo = prompt("Ändra Todo", todo);
         if (newTodo) {
-            todoDictionary.find(x => x.key === local_id).value[index] = newTodo;
+            todoDictionary.find(obj => obj === todoObject).value[index] = newTodo;
         }
     }
-    localStorage.setItem("todo_list", JSON.stringify(todoDictionary));
+
+    SaveTodoListToLocalStorage(todoDictionary);
     createTodoList();
+    fillTodoList();
 }
 
-function getStringIndex(string) {
-    return todoDictionary.find(x => x.key === local_id).value.findIndex(x => x === string);
+function getIndexInArrayByString(todoObject, string) {
+    return todoObject.value.findIndex(obj => obj == string);
+}
+
+function SaveTodoListToLocalStorage(todoList){
+    localStorage.setItem("todo_list", JSON.stringify(todoList));
 }

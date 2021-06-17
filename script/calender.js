@@ -119,8 +119,14 @@ function showTodos(event) {
         prevSelected.classList = "";
     }
 
-    prevSelected = event.target;
-    event.target.classList.add("selectedDiv");
+    if (prevSelected === event.target)
+    {
+        prevSelected = undefined;
+    }
+    else{
+        prevSelected = event.target;
+        event.target.classList.add("selectedDiv");
+    }
     initTodoList(event.target.id);
 }
 
