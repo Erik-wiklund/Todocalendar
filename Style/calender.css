@@ -16,32 +16,35 @@
 
 .calender-grid > div{
     background-color: whitesmoke;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
     min-width: 3.5em;
     position: relative;
+    font-weight: bolder;
 }
 
 .task-div{
     position:absolute;
-    bottom:0;
-    right:0;
+    bottom:5px;
+    left: 0;
+    color: blue;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
     .calender-grid{
         display: none;
     }
 }
 
 .month-button-style {
-   background-color: #f8f9fa;
+    background-color: lightgray;
     border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    color:grey;
+    color:black;
+    font-weight: bold;
     font-size: 10px;
-    padding: 0 16px;
     height: 20px;
     width: 75px;
     cursor: pointer;
