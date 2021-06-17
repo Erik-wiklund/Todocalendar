@@ -36,7 +36,6 @@ function addStoredTodo() {
             newTodoDiv.className = ("full-width" + " flex" + " space-around" + " no-margin-on-p");
             const minusButton = document.createElement("p");
             minusButton.addEventListener("click", removeTodo);
-            minusButton.innerText = "-";
         }
     }
     createCalender();
@@ -60,6 +59,7 @@ function createTodoList() {
 
     const plusbutton = document.createElement("p");
     plusbutton.innerText = "+";
+    plusbutton.className = "pointer";
     plusbutton.addEventListener("click", addNewTodo);
     addTodoDiv.append(plusbutton);
     todoList.append(addTodoDiv);
@@ -79,6 +79,7 @@ function fillTodoList() {
         const minusButton = document.createElement("p");
         minusButton.addEventListener("click", removeTodo);
         minusButton.innerText = "-";
+        minusButton.className = "pointer";
 
         newTodoDiv.append(todoText);
         newTodoDiv.append(minusButton);

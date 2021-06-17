@@ -42,7 +42,7 @@ body {
 }
 
 .selectedDiv{
-    background-color: lightskyblue !important;
+    background-color: rgb(255, 202, 103) !important;
 }
 
 .full-width{

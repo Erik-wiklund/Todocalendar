@@ -8,6 +8,7 @@
     background-color: cornflowerblue;
     background-image: linear-gradient(cornflowerblue, darkblue);
     flex-grow: 2;
+    padding: 5px; /* Padding för todo-listan, ser bättre ut */
 }
 
 .todoheader-font{
@@ -15,3 +16,10 @@
     color: whitesmoke;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
+/* .todo-item-list > div > p{
+    cursor: pointer;
+} */

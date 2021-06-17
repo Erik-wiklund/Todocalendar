@@ -1,5 +1,7 @@
 .calender-grid{
     display: grid;
+    background-image:url("/img/mountains.jpg");
+    background-size: 100%;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 50px 25px;
     border: 1px solid grey;
@@ -20,6 +22,11 @@
     min-width: 3.5em;
     position: relative;
     font-weight: bolder;
+    cursor: pointer;
+    opacity: 80%; /* Blir nog snyggast så här */
+    padding: 5px; /* Padding för siffrorna i div:en */
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 .task-div{
