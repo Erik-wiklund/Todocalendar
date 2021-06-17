@@ -87,7 +87,7 @@ body {
     left: 0;
     padding: 5px;
     pointer-events: none;
-
+    color: black;
 }
 
 .overflow{
@@ -101,5 +101,5 @@ body {
 }
 
 .min-height-calender{
-    min-height: 135px;
+    min-height: 100px;
 }

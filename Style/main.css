@@ -23,7 +23,7 @@ header{
 }
 /* behövs denna??? */
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
 
     main{
         grid-template-areas: 
