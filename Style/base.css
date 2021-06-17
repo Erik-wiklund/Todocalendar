@@ -45,6 +45,7 @@ body {
     background-color: lightskyblue !important;
     cursor: pointer;
 }
+
 .full-width{
     width: 100%;
 }
@@ -52,7 +53,6 @@ body {
 .no-margin-on-p > p{
     margin: 0;
 }
-
  
 .margin-left {
     margin-left: 1em;
