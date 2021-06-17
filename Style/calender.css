@@ -10,26 +10,31 @@
     "header header header header header header header";
 }
 
+/* BACKGROUND IMAGES ACCORDING TO SEASON */
 .calendar-grid-image-fall{
-    background-image:url("/img/fall-test.png");
+    background-image:url("/img/season-fall.png");
     background-size: cover;
-    /* background-repeat: no-repeat; */
+    transition: ease-in-out 2s;
 }
 
 .calendar-grid-image-winter{
-    background-image:url("/img/winter-test2.png");
+    background-image:url("/img/season-winter.png");
     background-size: cover;
+    transition: ease-in-out 2s;
 }
 
 .calendar-grid-image-spring{
     background-image:url("/img/season-spring.jpg");
     background-size: cover;
+    transition: ease-in-out 2s;
 }
 
 .calendar-grid-image-summer{
-    background-image:url("/img/summer-test.png");
+    background-image:url("/img/season-summer.png");
     background-size:cover;
+    transition: ease-in-out 1s;
 }
+/*- - - - - - - - - - - - - - - - - - -*/
 
 .calender-weekdays-header{
     grid-area: header;
