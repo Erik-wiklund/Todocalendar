@@ -1,16 +1,16 @@
 .todo-header{
-    background-color: rgb(255, 255, 255);
     flex-grow: 1;
-    /* background-image: linear-gradient(rgb(252, 186, 99)); */
 }
 
 .todo-item-list{
     border-top: 1px solid grey;
-    background-color: rgb(255, 255, 255);
-    /* background-image: linear-gradient(rgb(252, 186, 99), rgb(255, 102, 0)); */
-    flex-grow: 2;
+    flex-grow: 3;
     color: rgb(236, 170, 70);
     padding: 5px; /* Padding för todo-listan, ser bättre ut */
+}
+
+.orange-gradient{
+    background-image: linear-gradient(rgb(255,255,255), orange);
 }
 
 .todoheader-font{
@@ -21,3 +21,4 @@
 .pointer{
     cursor: pointer;
 }
+

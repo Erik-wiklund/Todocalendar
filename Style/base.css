@@ -13,6 +13,9 @@ body {
     display: flex;
 }
 
+.grow-2{ flex-grow: 2; }
+.grow-1{ flex-grow: 1; }
+
 .column{
     flex-direction: column;
 }
