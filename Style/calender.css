@@ -71,6 +71,12 @@
     left: 0;
 }
 
+.day{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 1000px) {
     main{
         display: flex;
@@ -79,7 +85,7 @@
 
     .calender-grid{
         display: grid;
-        max-height: 40%;
+        max-height: 14em;
         display: none;
         border: 0 !important;
     }
@@ -111,13 +117,25 @@
         font-size: 14px;
     }
 
-    .position-absolute-task{
+    .overflow-tasks{
         position: right;
-        margin-left: 65px;
-        width: 32%;
-        unicode-range: U+30-39 !important;
+        margin-left: 30px;
+        color: blue;
+        width: 40%;
+        display: none;
     }
-
+    .position-absolute-task{
+        border-radius: 50%;
+        height: 1px;
+        width: 1px;
+        background-color:slateblue;
+        display: block;
+        position: absolute;
+        bottom: 1px;
+        right: 2px;
+        left: auto;
+        z-index: 100;
+    }
 }
 
 @media (max-width: 465px) {
@@ -140,6 +158,15 @@
     }
 }
 
+@media screen and (max-width: 600px) {
+
+    .day[data-abbr]::after { 
+        content: attr(data-abbr); 
+    }
+    
+    .day > span { display: none; }
+}
+
 @media (max-height: 875px) {
     .calender-grid:after{
     content: "";
@@ -147,6 +174,10 @@
     height: 10px;
     width: 100%;
     }
+    
+    /* .pointer{
+        color: blue;
+    } hur göra dom blå när för liten för annan indikator för tasks??*/
 }
 
 @media (min-width: 1000px) {
