@@ -59,7 +59,7 @@ function createCalender() {
             // Kontrollera om helgdag
             const sweholiday = swedishWeekends.find(x => x.date == formatDate(dayDiv.id));
             if (sweholiday) {
-                dayDiv.className = "red pointer";
+                dayDiv.className += " red pointer";
 
                 const dayName = document.createElement("p");
                 const posdiv = document.createElement("div");
