@@ -9,13 +9,13 @@
 }
 
 /*SOMMARFÄRG*/
-.summer-background{ background-image: linear-gradient(rgb(255,255,255) 1%, gold); }
+.summer-background{ background-image: linear-gradient(rgb(255,255,255) 1%, gold);}
 
 /*HÖSTFÄRGER*/
-.fall-background{ background-image: linear-gradient(rgb(255,255,255) 1%, orange); }
+.fall-background{ background-image: linear-gradient(rgb(255,255,255) 1%, orange);}
 
 /*VINTERFÄRGER*/
-.winter-background{ background-image:linear-gradient(#097abb, #183d52); }
+.winter-background{ background-image:linear-gradient(#097abb, #183d52);}
 
 /*VÅRFÄRGER*/
 .spring-background{ background-image: linear-gradient(white 1%, #81ba37); }
