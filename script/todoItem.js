@@ -38,6 +38,7 @@ function initTodoList(id) {
 
     createTodoList();
     fillTodoList();
+    createCalender();
 }
 
 function createTodoList() {
