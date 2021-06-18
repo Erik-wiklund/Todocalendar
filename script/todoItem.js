@@ -51,17 +51,13 @@ function createTodoList() {
         addTodoDiv.innerHTML = "<p>Lägg till nytt Todo</p>";
 
         const plusbutton = createElementWithClickEventAndCustomText("p", addNewTodo, "+");
+        plusbutton.className = "pointer";
         addTodoDiv.append(plusbutton);
     }
     else {
         addTodoDiv.innerHTML = "<p>Nuvarande Todos</p>";
     }
 
-    const plusbutton = document.createElement("p");
-    plusbutton.innerText = "+";
-    plusbutton.className = "pointer";
-    plusbutton.addEventListener("click", addNewTodo);
-    addTodoDiv.append(plusbutton);
     todoList.append(addTodoDiv);
 }
 

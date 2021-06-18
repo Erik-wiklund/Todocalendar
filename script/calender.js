@@ -31,6 +31,10 @@ function createCalender() {
             dayDiv.classList.add("pointer");
             dayDiv.classList.add("min-height-calender");
 
+            if (prevSelected && prevSelected.id === dayDiv.id) {
+                dayDiv.classList.add(prevSelected.classList[prevSelected.classList.length - 1]);
+            }
+
             if (todoDictionary.length && todoDictionary.find(x => x.key === dayDiv.id)) {
 
                 var numberoftodos = todoDictionary.find(x => x.key === dayDiv.id).value.length;
@@ -50,14 +54,7 @@ function createCalender() {
                     posdiv.append(number);
                     dayDiv.append(posdiv);
                 }
-                if (prevSelected && prevSelected.id === dayDiv.id) {
-                    prevSelected = dayDiv;
-                    dayDiv.classList.toggle("selectedDiv");
-                }
             }
-
-
-            //gör denna något????
 
             // Kontrollera om helgdag
             const sweholiday = swedishWeekends.find(x => x.date == formatDate(dayDiv.id));
@@ -225,36 +222,32 @@ function showTodos(event) {
     //     initTodoList(event.target.id);
     // }
 
+    if (event.target) {
+        const calender = document.getElementById("calender");
+        if (calender.classList.contains("calendar-grid-image-summer")) {
+            event.target.classList.add("selectedDiv-summer");
+        }
+        else if (calender.classList.contains("calendar-grid-image-winter")) {
+            event.target.classList.add("selectedDiv-winter");
+        }
+        else if (calender.classList.contains("calendar-grid-image-spring")) {
+            event.target.classList.add("selectedDiv-spring");
+        }
+        else if (calender.classList.contains("calendar-grid-image-fall")) {
+            event.target.classList.add("selectedDiv-fall");
+        }
+    }
+
     if (!prevSelected) {
         prevSelected = event.target;
-        event.target.classList.toggle("selectedDiv");
-        initTodoList(event.target.id);
     }
     else if (event.target.id !== prevSelected.id) {
         prevSelected.className = "";
-        event.target.classList.toggle("selectedDiv")
         prevSelected = event.target;
-        initTodoList(event.target.id);
     }
     else if (event.target.id == prevSelected.id) {
-        event.target.classList.toggle("selectedDiv");
         prevSelected = undefined;
-        initTodoList(event.target.id);
-    }
-
-    prevSelected = event.target;
-    const calender = document.getElementById("calender");
-    if (calender.classList.contains("calendar-grid-image-summer")) {
-        event.target.classList.add("selectedDiv-summer");
-    }
-    else if (calender.classList.contains("calendar-grid-image-winter")) {
-        event.target.classList.add("selectedDiv-winter");
-    }
-    else if (calender.classList.contains("calendar-grid-image-spring")) {
-        event.target.classList.add("selectedDiv-spring");
-    }
-    else if (calender.classList.contains("calendar-grid-image-fall")) {
-        event.target.classList.add("selectedDiv-fall");
+        event.target.className = "";
     }
     
     initTodoList(event.target.id);
