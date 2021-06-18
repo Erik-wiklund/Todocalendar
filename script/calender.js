@@ -246,3 +246,4 @@ let selectedMonth = new Date().getMonth();
 let selectedYear = new Date().getFullYear();
 let prevSelected;
 const months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
+const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']

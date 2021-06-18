@@ -48,6 +48,7 @@
 
 .calender-weekdays-header{
     grid-area: header;
+    font-size: 12px;
 }
 
 .calender-grid > div{
@@ -77,6 +78,9 @@
     align-items: center;
 }
 
+.short-months{
+
+}
 @media (max-width: 1000px) {
     main{
         display: flex;
@@ -136,54 +140,38 @@
         left: auto;
         z-index: 100;
     }
+
+    .calender-grid:after{
+        content: "";
+        display: block;
+        height: 10px;
+        width: 100%;
+        }
 }
 
-@media (max-width: 465px) {
-    
-    .position-absolute-day{
-        position:absolute;
-        width: 90%;
-        bottom: 0px;
-        left: 0;
-        padding: 5px;
-        pointer-events: none;
-        color: black;
-    }
-        
-    .text-ellipsis{
-        font-size: 12px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow:ellipsis;
-    }
-}
-
-@media screen and (max-width: 600px) {
-
+@media (max-width: 600px) {
     .day[data-abbr]::after { 
         content: attr(data-abbr); 
     }
-    
     .day > span { display: none; }
 }
 
-@media (max-height: 875px) {
+@media (max-height: 830px) {
     .calender-grid:after{
     content: "";
     display: block;
     height: 10px;
     width: 100%;
     }
-    
-    /* .pointer{
-        color: blue;
-    } hur göra dom blå när för liten för annan indikator för tasks??*/
 }
 
-@media (min-width: 1000px) {
-    .todo-header{
-        display: flex;
+@media (max-width: 450px) {
+
+    .short-months[data-abbr]::after { 
+        content: attr(data-abbr); 
     }
+
+    .short-months > span { display: none; }
 }
 
 .month-button-style {
