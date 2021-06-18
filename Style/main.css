@@ -21,21 +21,17 @@ header{
 @media (max-width: 1000px) {
 
     main{
-    grid-template-areas: 
-    "calender"
+        grid-template-areas: 
     "sidepanel";
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     }
-    .todo-header{
+
+    .calender{
         display: none;
     }
 
-    /* .calender-grid{
-        display: grid;
-    }
-
-    .calender-grid > div{
+    .calender > div{
         display: none;
-    } */
+    }
 }
