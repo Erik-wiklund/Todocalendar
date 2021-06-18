@@ -78,7 +78,7 @@
     }
 }
 
-@media (max-height: 875px) {
+@media (max-height: 825px) {
     .calender-grid:after{
     content: "";
     display: block;
