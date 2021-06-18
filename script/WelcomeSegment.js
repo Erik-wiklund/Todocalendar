@@ -2,6 +2,7 @@ function initWelcomeSegment() {
     let date = new Date()
     printTimeOfDay();
     printDayDateAndMonth(date);
+    addClickEventTobutton();
 }
 
 function printDayDateAndMonth(date) {
@@ -23,4 +24,18 @@ function printTimeOfDay() {
 
     document.getElementById('clock').innerHTML = t_str;
 }
+
+function addClickEventTobutton(){
+    const button = document.querySelector(".show-calendar-button");
+    button.addEventListener("click", editDivClasses);
+}
+
+function editDivClasses(){
+    const calendarGrid = document.querySelector(".calender-grid");
+    const todoHeader = document.querySelector(".todo-header");
+    
+    todoHeader.classList.toggle("display-none");
+    calendarGrid.classList.toggle("display");
+}
+
 setInterval(printTimeOfDay, 1000);

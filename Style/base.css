@@ -91,6 +91,14 @@ body {
     color: whitesmoke;
 }
 
+.display-none{
+    display: none;
+}
+
+.display{
+    display: grid !important;
+}
+
 .position-absolute{
     position:absolute;
     height: 100%;

@@ -73,8 +73,47 @@
 }
 
 @media (max-width: 1000px) {
-    .calender-grid{
+    main{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    /* .todo-header{
         display: none;
+    } */
+
+    .calender-grid{
+        display: grid;
+        max-height: 40%;
+        display: none;
+    }
+
+    .todo-item-list{
+        height: 100%;
+    }
+
+    .todo-side-panel{
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .calender-grid > div{
+    min-width: 1em;
+    min-height: 13px;
+    }
+
+    .overflow{
+        display: none;
+    }
+
+    .text-ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    justify-content: left;
+    }
+    
+    .show-calendar-button{
+        display: initial;
     }
 }
 

@@ -29,7 +29,11 @@ header{
     min-height: 31em;
 }
 
-@media (max-width: 1000px) {
+.show-calendar-button{
+    display: none;
+}
+
+/* @media (max-width: 1000px) {
 
     main{
         grid-template-areas: 
@@ -45,4 +49,4 @@ header{
     .calender > div{
         display: none;
     }
-}
+} */
