@@ -46,6 +46,10 @@ body {
     color: red;
 }
 
+.text-center{
+    text-align: center;
+    font-size: 15px;
+}
 
 .selectedDiv-fall{
     background-color: orange !important;
@@ -62,7 +66,6 @@ body {
 .selectedDiv-summer {
     background-color: gold !important;
 }
-
 
 .full-width{
     width: 100%;

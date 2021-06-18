@@ -95,6 +95,7 @@ function createCalender() {
         h2Div.innerText = months[selectedMonth] + " " + selectedYear;
         changeBackgroundImageAccordingToSeason(months[selectedMonth]);
         const nextMonth = document.getElementById("next-month");
+        h2Div.className += " text-center"
 
         calenderHeader.insertBefore(h2Div, nextMonth);
     }
