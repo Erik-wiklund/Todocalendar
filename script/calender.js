@@ -39,7 +39,7 @@ function createCalender() {
                     let number = document.createElement("div");
                     const posdiv = document.createElement("div");
                     posdiv.className = "position-absolute-task"
-                    number.className = "overflow";
+                    number.className = "overflow-tasks";
 
                     if (2 > numberoftodos > 0) {
                         number.innerText = (numberoftodos + ' uppgift idag');
@@ -71,7 +71,7 @@ function createCalender() {
 
             if (prevSelected && prevSelected.id === dayDiv.id) {
                 dayDiv.classList.add(getLastClassNameFromElement(prevSelected));
-                prevSelected = dayDiv;                
+                prevSelected = dayDiv;
             }
         }
         else {
@@ -103,7 +103,7 @@ function createCalender() {
 // Function for changing background image
 function changeBackgroundImageAccordingToSeason(month) {
     const divToChange = document.getElementById('calender');
-    
+
     removeSeasons(divToChange);
 
     if (isFall(month)) {
@@ -219,7 +219,7 @@ function showTodos(event) {
     else if (event.target.id == prevSelected.id) {
         prevSelected = undefined;
     }
-    
+
     initTodoList(event.target.id);
 }
 
@@ -237,7 +237,7 @@ function getMonthDays(monthInt, yearInt) {
     return new Date(yearInt, monthInt + 1, 0).getDate();
 }
 
-function getLastClassNameFromElement(element){
+function getLastClassNameFromElement(element) {
     return element.classList[prevSelected.classList.length - 1];
 }
 

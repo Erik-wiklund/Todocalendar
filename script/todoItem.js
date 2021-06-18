@@ -58,6 +58,7 @@ function fillTodoList() {
             const newTodoDiv = createElementWithClassName("div", "full-width flex space-between no-margin-on-p");
 
             const todoText = createElementWithClickEventAndCustomText("p", () => editTodo(todoObject, todo), todo);
+            todoText.className += "overflow-todo";
 
             const minusButton = createElementWithClickEventAndCustomText("p", () => removeTodo(todoObject, todo), "-");
             minusButton.className = "pointer";

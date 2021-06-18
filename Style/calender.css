@@ -111,6 +111,13 @@
         font-size: 14px;
     }
 
+    .position-absolute-task{
+        position: right;
+        margin-left: 65px;
+        width: 32%;
+        unicode-range: U+30-39 !important;
+    }
+
 }
 
 @media (max-width: 465px) {
