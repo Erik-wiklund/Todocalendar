@@ -6,31 +6,6 @@ function loadLocalStorage() {
     if (localStorage.getItem('todo_list')) {
         todoDictionary = JSON.parse(localStorage.getItem('todo_list'));
     }
-
-    // for (let i = 0; i < todoDictionary.length; i++) {
-    //     local_id = (todoDictionary[i].local_id);
-    //     todo = (todoDictionary[i].todo);
-    //     addStoredTodo();
-    // }
-}
-
-function addStoredTodo() {
-    if (!todoDictionary[local_id]) {
-        todoDictionary.push({
-            key: local_id,
-            value: []
-        });
-    }
-    todoDictionary[local_id].push(todo);
-    if (todo) {
-        for (let todo of todoDictionary[local_id]) {
-            const newTodoDiv = document.createElement("div");
-            newTodoDiv.className = ("full-width" + " flex" + " space-around" + " no-margin-on-p");
-            const minusButton = document.createElement("p");
-            minusButton.addEventListener("click", removeTodo);
-        }
-    }
-    createCalender();
 }
 
 function initTodoList(id) {
@@ -38,7 +13,6 @@ function initTodoList(id) {
 
     createTodoList();
     fillTodoList();
-    createCalender();
 }
 
 function createTodoList() {
@@ -84,12 +58,6 @@ function fillTodoList() {
             const newTodoDiv = createElementWithClassName("div", "full-width flex space-between no-margin-on-p");
 
             const todoText = createElementWithClickEventAndCustomText("p", () => editTodo(todoObject, todo), todo);
-
-
-            //const minusButton = document.createElement("p");
-            //minusButton.addEventListener("click", removeTodo);
-            //minusButton.innerText = "-";
-            //minusButton.className = "pointer";
 
             const minusButton = createElementWithClickEventAndCustomText("p", () => removeTodo(todoObject, todo), "-");
             minusButton.className = "pointer";

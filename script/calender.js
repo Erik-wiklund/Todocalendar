@@ -31,10 +31,6 @@ function createCalender() {
             dayDiv.classList.add("pointer");
             dayDiv.classList.add("min-height-calender");
 
-            if (prevSelected && prevSelected.id === dayDiv.id) {
-                dayDiv.classList.add(prevSelected.classList[prevSelected.classList.length - 1]);
-            }
-
             if (todoDictionary.length && todoDictionary.find(x => x.key === dayDiv.id)) {
 
                 var numberoftodos = todoDictionary.find(x => x.key === dayDiv.id).value.length;
@@ -72,6 +68,11 @@ function createCalender() {
                 dayDiv.append(posdiv);
 
             }
+
+            if (prevSelected && prevSelected.id === dayDiv.id) {
+                dayDiv.classList.add(getLastClassNameFromElement(prevSelected));
+                prevSelected = dayDiv;                
+            }
         }
         else {
             dayDiv.innerText = i - (numberOfDays + firstWeekdayInMonth - 1);
@@ -102,21 +103,19 @@ function createCalender() {
 // Function for changing background image
 function changeBackgroundImageAccordingToSeason(month) {
     const divToChange = document.getElementById('calender');
+    
+    removeSeasons(divToChange);
 
     if (isFall(month)) {
-        removeSeasons(divToChange);
-        setFall(divToChange);
+        setSeason(divToChange, "calendar-grid-image-fall")
     } else if (isSummer(month)) {
-        removeSeasons(divToChange);
-        setSummer(divToChange);
+        setSeason(divToChange, "calendar-grid-image-summer")
     }
     else if (isWinter(month)) {
-        removeSeasons(divToChange);
-        setWinter(divToChange);
+        setSeason(divToChange, "calendar-grid-image-winter")
     }
     else if (isSpring(month)) {
-        removeSeasons(divToChange);
-        setSpring(divToChange);
+        setSeason(divToChange, "calendar-grid-image-spring")
     }
 }
 
@@ -146,20 +145,8 @@ function isWinter(month) {
 }
 
 /** Set appropriate season */
-function setSummer(divToChange) {
-    divToChange.classList.add('calendar-grid-image-summer');
-}
-
-function setFall(divToChange) {
-    divToChange.classList.add('calendar-grid-image-fall');
-}
-
-function setWinter(divToChange) {
-    divToChange.classList.add('calendar-grid-image-winter');
-}
-
-function setSpring(divToChange) {
-    divToChange.classList.add('calendar-grid-image-spring');
+function setSeason(divToChange, seasonClass) {
+    divToChange.classList.add(seasonClass);
 }
 
 /** remove classes from calendar background */
@@ -204,50 +191,33 @@ async function nextMonth() {
 
 function showTodos(event) {
 
-    // if (prevSelected == null) {
-    //     prevSelected = event.target.id;
-    //     newSelected = event.target;
-    //     event.target.classList.toggle("selectedDiv");
-    //     initTodoList(event.target.id);
-    // }
-    // else if (event.target.id !== prevSelected && prevSelected !== null) {
-    //     newSelected.classList.remove("selectedDiv");
-    //     event.target.classList.toggle("selectedDiv")
-    //     prevSelected = event.target.id;
-    //     newSelected = event.target;
-    //     initTodoList(event.target.id);
-    // }
-    // else if (prevSelected.id == event.target.id) {
-    //     event.target.classList.toggle("selectedDiv");
-    //     initTodoList(event.target.id);
-    // }
-
     if (event.target) {
+        let seasonString = "";
         const calender = document.getElementById("calender");
         if (calender.classList.contains("calendar-grid-image-summer")) {
-            event.target.classList.add("selectedDiv-summer");
+            seasonString = "selectedDiv-summer";
         }
         else if (calender.classList.contains("calendar-grid-image-winter")) {
-            event.target.classList.add("selectedDiv-winter");
+            seasonString = "selectedDiv-winter";
         }
         else if (calender.classList.contains("calendar-grid-image-spring")) {
-            event.target.classList.add("selectedDiv-spring");
+            seasonString = "selectedDiv-spring";
         }
         else if (calender.classList.contains("calendar-grid-image-fall")) {
-            event.target.classList.add("selectedDiv-fall");
+            seasonString = "selectedDiv-fall";
         }
+        event.target.classList.toggle(seasonString);
     }
 
     if (!prevSelected) {
         prevSelected = event.target;
     }
     else if (event.target.id !== prevSelected.id) {
-        prevSelected.className = "";
+        prevSelected.classList.toggle(getLastClassNameFromElement(prevSelected));
         prevSelected = event.target;
     }
     else if (event.target.id == prevSelected.id) {
         prevSelected = undefined;
-        event.target.className = "";
     }
     
     initTodoList(event.target.id);
@@ -267,9 +237,12 @@ function getMonthDays(monthInt, yearInt) {
     return new Date(yearInt, monthInt + 1, 0).getDate();
 }
 
+function getLastClassNameFromElement(element){
+    return element.classList[prevSelected.classList.length - 1];
+}
+
 const gridSize = 42;
 let selectedMonth = new Date().getMonth();
 let selectedYear = new Date().getFullYear();
-let prevSelected = null;
-let newSelected;
-var months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
+let prevSelected;
+const months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
