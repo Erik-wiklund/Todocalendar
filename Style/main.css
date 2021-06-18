@@ -18,11 +18,6 @@ header{
     height: 3rem;
 }
 
-.todo-side-panel{
-    grid-area: sidepanel;
-}
-/* behövs denna??? */
-
 @media (max-width: 1000px) {
 
     main{

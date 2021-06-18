@@ -1,15 +1,9 @@
-window.addEventListener("load", main);
-
-
-async function main() {
+async function tryFetchCalenderInfo() {
     try {
         await fetchCalendarInfo();
     } catch (error) {
         console.error(error);
     }
-    load();
-    addEventListeners();
-    createCalender();
 }
 
 function createCalender() {
@@ -56,12 +50,13 @@ function createCalender() {
                     posdiv.append(number);
                     dayDiv.append(posdiv);
                 }
+                if (prevSelected && prevSelected.id === dayDiv.id) {
+                    prevSelected = dayDiv;
+                    dayDiv.classList.toggle("selectedDiv");
+                }
             }
 
-            /*if (prevSelected && prevSelected.id === dayDiv.id) {
-                prevSelected = dayDiv;
-                dayDiv.classList.add("selectedDiv");
-            }*/
+
             //gör denna något????
 
             // Kontrollera om helgdag
@@ -119,11 +114,7 @@ async function previousMonth() {
     if (selectedMonth < 0) {
         selectedMonth = 11;
         selectedYear--;
-        try {
-            await fetchCalendarInfo();
-        } catch (error) {
-            console.error(error);
-        }
+        await tryFetchCalenderInfo();
     }
     createCalender();
 }
@@ -134,32 +125,45 @@ async function nextMonth() {
     if (selectedMonth > 11) {
         selectedMonth = 0;
         selectedYear++;
-        try {
-            await fetchCalendarInfo();
-        } catch (error) {
-            console.error(error);
-        }
+        await tryFetchCalenderInfo();
     }
     createCalender();
 }
 
 function showTodos(event) {
 
-    if (prevSelected == null) {
-        prevSelected = event.target.id;
-        newSelected = event.target;
+    // if (prevSelected == null) {
+    //     prevSelected = event.target.id;
+    //     newSelected = event.target;
+    //     event.target.classList.toggle("selectedDiv");
+    //     initTodoList(event.target.id);
+    // }
+    // else if (event.target.id !== prevSelected && prevSelected !== null) {
+    //     newSelected.classList.remove("selectedDiv");
+    //     event.target.classList.toggle("selectedDiv")
+    //     prevSelected = event.target.id;
+    //     newSelected = event.target;
+    //     initTodoList(event.target.id);
+    // }
+    // else if (prevSelected.id == event.target.id) {
+    //     event.target.classList.toggle("selectedDiv");
+    //     initTodoList(event.target.id);
+    // }
+
+    if (!prevSelected) {
+        prevSelected = event.target;
         event.target.classList.toggle("selectedDiv");
         initTodoList(event.target.id);
     }
-    else if (event.target.id !== prevSelected && prevSelected !== null) {
-        newSelected.classList.remove("selectedDiv");
+    else if (event.target.id !== prevSelected.id) {
+        prevSelected.className = "";
         event.target.classList.toggle("selectedDiv")
-        prevSelected = event.target.id;
-        newSelected = event.target;
+        prevSelected = event.target;
         initTodoList(event.target.id);
     }
-    else if (event.target.id == event.target.id) {
+    else if (event.target.id == prevSelected.id) {
         event.target.classList.toggle("selectedDiv");
+        prevSelected = undefined;
         initTodoList(event.target.id);
     }
 }

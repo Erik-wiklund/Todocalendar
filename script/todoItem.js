@@ -1,14 +1,11 @@
 let todoDictionary = [];
 let local_id;
 
-function load() {
-    todoDictionary.length = 0;
+function loadLocalStorage() {
 
     if (localStorage.getItem('todo_list')) {
         todoDictionary = JSON.parse(localStorage.getItem('todo_list'));
     }
-
-    initTodoList(local_id);
 }
 
 function initTodoList(id) {
@@ -43,7 +40,7 @@ function fillTodoList() {
     let todoObjectList = [];
     if (local_id) {
         const currentDayTodoObject = todoDictionary.find(todoObj => todoObj.key === local_id)
-        
+
         if (currentDayTodoObject) {
             todoObjectList.push(currentDayTodoObject);
         }
@@ -56,7 +53,7 @@ function fillTodoList() {
     for (const todoObject of todoObjectList) {
         for (const todo of todoObject.value) {
             const todoListDiv = document.querySelector(".todo-item-list");
-            
+
             const newTodoDiv = createElementWithClassName("div", "full-width flex space-between no-margin-on-p");
 
             const todoText = createElementWithClickEventAndCustomText("p", () => editTodo(todoObject, todo), todo);
@@ -79,7 +76,7 @@ function createElementWithClickEventAndCustomText(typeOfElement, functionEventSh
     return clickableElement;
 }
 
-function createElementWithClassName(elementType, className){
+function createElementWithClassName(elementType, className) {
     const newElement = document.createElement(elementType);
     newElement.className = (className);
     return newElement;
@@ -142,6 +139,6 @@ function getIndexInArrayByString(todoObject, string) {
     return todoObject.value.findIndex(obj => obj == string);
 }
 
-function SaveTodoListToLocalStorage(todoList){
+function SaveTodoListToLocalStorage(todoList) {
     localStorage.setItem("todo_list", JSON.stringify(todoList));
 }
