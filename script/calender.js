@@ -89,21 +89,47 @@ function createCalender() {
     if (h2Div) {
         h2Div.innerText = months[selectedMonth] + " " + selectedYear;
         changeBackgroundImageAccordingToSeason(months[selectedMonth]);
+        changeSidePanelColorAccordingToSeason(months[selectedMonth]); // To change color on side panel
     }
     else {
         const h2Div = document.createElement("h2");
         h2Div.innerText = months[selectedMonth] + " " + selectedYear;
         changeBackgroundImageAccordingToSeason(months[selectedMonth]);
         const nextMonth = document.getElementById("next-month");
-
         calenderHeader.insertBefore(h2Div, nextMonth);
+        changeSidePanelColorAccordingToSeason(months[selectedMonth]); // To change color on side panel
     }
+}
+
+// function for changing color on side panel
+function changeSidePanelColorAccordingToSeason(month) {
+    const divToChangeColorFor = document.getElementById("sidepanel");
+    removeColors(divToChangeColorFor);
+
+    if (isFall(month)) {
+        divToChangeColorFor.classList.add("fall-background");
+    } else if (isSpring(month)){
+        divToChangeColorFor.classList.add("spring-background");
+    } else if(isWinter(month)){
+        divToChangeColorFor.classList.add("winter-background");
+    } else if(isSummer(month)){
+        divToChangeColorFor.classList.add("summer-background");
+    }
+}
+
+// For removing color classes
+function removeColors(divToChangeColorFor) {
+    divToChangeColorFor.classList.remove(
+        'summer-background',
+        'fall-background',
+        'winter-background',
+        'spring-background'
+    )
 }
 
 // Function for changing background image
 function changeBackgroundImageAccordingToSeason(month) {
-    const divToChange = document.getElementById('calender');
-    
+    const divToChange = document.getElementById('calender');    
     removeSeasons(divToChange);
 
     if (isFall(month)) {
