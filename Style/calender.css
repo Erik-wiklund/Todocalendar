@@ -69,7 +69,6 @@
     position:absolute;
     bottom:5px;
     left: 0;
-    /* color: blue; */
 }
 
 @media (max-width: 1000px) {
@@ -77,18 +76,17 @@
         display: flex;
         flex-direction: column-reverse;
     }
-    /* .todo-header{
-        display: none;
-    } */
 
     .calender-grid{
         display: grid;
         max-height: 40%;
         display: none;
+        border: 0 !important;
     }
 
     .todo-item-list{
         height: 100%;
+        border: 0 !important;
     }
 
     .todo-side-panel{
@@ -104,16 +102,34 @@
     .overflow{
         display: none;
     }
-
-    .text-ellipsis{
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    justify-content: left;
-    }
     
     .show-calendar-button{
         display: initial;
+    }
+
+    .position-absolute-day{
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 465px) {
+    
+    .position-absolute-day{
+        position:absolute;
+        width: 90%;
+        bottom: 0px;
+        left: 0;
+        padding: 5px;
+        pointer-events: none;
+        color: black;
+    }
+        
+    .text-ellipsis{
+        font-size: 12px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis;
     }
 }
 
@@ -123,6 +139,12 @@
     display: block;
     height: 10px;
     width: 100%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .todo-header{
+        display: flex;
     }
 }
 
