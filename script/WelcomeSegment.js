@@ -1,6 +1,4 @@
-window.addEventListener('load', main);
-
-function main() {
+function initWelcomeSegment() {
     let date = new Date()
     printTimeOfDay();
     printDayDateAndMonth(date);
@@ -25,4 +23,4 @@ function printTimeOfDay() {
 
     document.getElementById('clock').innerHTML = t_str;
 }
-// setInterval(printTimeOfDay, 1000);
+setInterval(printTimeOfDay, 1000);

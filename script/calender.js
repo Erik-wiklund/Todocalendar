@@ -1,11 +1,9 @@
-window.addEventListener("load", main);
-
-
-async function main() {
-    await fetchCalendarInfo();
-    load();
-    addEventListeners();
-    createCalender();
+async function tryFetchCalenderInfo() {
+    try {
+        await fetchCalendarInfo();
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function createCalender() {
@@ -24,41 +22,64 @@ function createCalender() {
         if (i < firstWeekdayInMonth) {
             dayDiv.innerText = numberOfDayPrevouslyMonth - (firstWeekdayInMonth - 1 - i);
             dayDiv.className = "grey";
+            dayDiv.classList.add("min-height-calender");
         }
         else if (i < firstWeekdayInMonth + numberOfDays) {
             dayDiv.id = selectedYear + "-" + (selectedMonth + 1) + "-" + (i - firstWeekdayInMonth + 1);
             dayDiv.innerHTML = i - firstWeekdayInMonth + 1;
             dayDiv.addEventListener("click", showTodos);
+            dayDiv.classList.add("pointer");
+            dayDiv.classList.add("min-height-calender");
 
             if (todoDictionary.length && todoDictionary.find(x => x.key === dayDiv.id)) {
 
                 var numberoftodos = todoDictionary.find(x => x.key === dayDiv.id).value.length;
                 if (numberoftodos > 0) {
+
                     let number = document.createElement("div");
-                    number.className = "task-div";
-                    number.innerText = numberoftodos;
-                    dayDiv.append(number);
+                    const posdiv = document.createElement("div");
+                    posdiv.className = "position-absolute-task"
+                    number.className = "overflow";
+
+                    if (2 > numberoftodos > 0) {
+                        number.innerText = (numberoftodos + ' uppgift idag');
+                    } else {
+                        number.innerText = (numberoftodos + ' uppgifter idag');
+                    };
+
+                    posdiv.append(number);
+                    dayDiv.append(posdiv);
+                }
+                if (prevSelected && prevSelected.id === dayDiv.id) {
+                    prevSelected = dayDiv;
+                    dayDiv.classList.toggle("selectedDiv");
                 }
             }
 
-            if (prevSelected && prevSelected.id === dayDiv.id) {
-                prevSelected = dayDiv;
-                dayDiv.classList.add("selectedDiv");
-            }
-            
+
+            //gör denna något????
+
             // Kontrollera om helgdag
             const sweholiday = swedishWeekends.find(x => x.date == formatDate(dayDiv.id));
             if (sweholiday) {
-                dayDiv.className = "red";
+                dayDiv.className = "red pointer";
+
                 const dayName = document.createElement("p");
-                
+                const posdiv = document.createElement("div");
+
+                posdiv.className = "position-absolute"
+                dayName.className = "overflow"
+
                 dayName.innerText = sweholiday.holiday;
-                dayDiv.append(dayName);
+                posdiv.append(dayName);
+                dayDiv.append(posdiv);
+
             }
         }
         else {
             dayDiv.innerText = i - (numberOfDays + firstWeekdayInMonth - 1);
             dayDiv.className = "grey";
+            dayDiv.classList.add("min-height-calender");
         }
 
         calenderGrid.append(dayDiv);
@@ -162,36 +183,63 @@ function addEventListeners() {
     nextButton.addEventListener("click", nextMonth);
 }
 
-function previousMonth() {
+async function previousMonth() {
     selectedMonth--;
 
     if (selectedMonth < 0) {
         selectedMonth = 11;
         selectedYear--;
+        await tryFetchCalenderInfo();
     }
-
     createCalender();
 }
 
-function nextMonth() {
+async function nextMonth() {
     selectedMonth++;
 
     if (selectedMonth > 11) {
         selectedMonth = 0;
         selectedYear++;
+        await tryFetchCalenderInfo();
     }
-
     createCalender();
 }
 
 function showTodos(event) {
 
-    if (event.target !== this) {
-        return;
-    }
+    // if (prevSelected == null) {
+    //     prevSelected = event.target.id;
+    //     newSelected = event.target;
+    //     event.target.classList.toggle("selectedDiv");
+    //     initTodoList(event.target.id);
+    // }
+    // else if (event.target.id !== prevSelected && prevSelected !== null) {
+    //     newSelected.classList.remove("selectedDiv");
+    //     event.target.classList.toggle("selectedDiv")
+    //     prevSelected = event.target.id;
+    //     newSelected = event.target;
+    //     initTodoList(event.target.id);
+    // }
+    // else if (prevSelected.id == event.target.id) {
+    //     event.target.classList.toggle("selectedDiv");
+    //     initTodoList(event.target.id);
+    // }
 
-    if (prevSelected) {
-        prevSelected.classList = "";
+    if (!prevSelected) {
+        prevSelected = event.target;
+        event.target.classList.toggle("selectedDiv");
+        initTodoList(event.target.id);
+    }
+    else if (event.target.id !== prevSelected.id) {
+        prevSelected.className = "";
+        event.target.classList.toggle("selectedDiv")
+        prevSelected = event.target;
+        initTodoList(event.target.id);
+    }
+    else if (event.target.id == prevSelected.id) {
+        event.target.classList.toggle("selectedDiv");
+        prevSelected = undefined;
+        initTodoList(event.target.id);
     }
 
     prevSelected = event.target;
@@ -229,5 +277,6 @@ function getMonthDays(monthInt, yearInt) {
 const gridSize = 42;
 let selectedMonth = new Date().getMonth();
 let selectedYear = new Date().getFullYear();
-let prevSelected;
+let prevSelected = null;
+let newSelected;
 var months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];

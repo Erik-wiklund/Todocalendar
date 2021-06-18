@@ -1,11 +1,21 @@
+.calender{
+    grid-area: calender;
+    background-color: white;
+    min-height: 31em;
+}
+/*behövs denna???*/
+
 .calender-grid{
     display: grid;
+    overflow-y: auto;
+    grid-area: calender;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 50px 25px;
     border: 1px solid grey;
-    gap: 1em;
+    gap: 0.5em;
     padding: 1em;
     position: relative;
+    min-height: 13px;
     grid-template-areas: 
     "header header header header header header header";
 }
@@ -51,6 +61,8 @@
     padding: 5px; /* Padding för siffrorna i div:en */
     word-wrap: break-word;
     hyphens: auto;
+    transition: 0.25s;
+    border-radius: 0.5em;
 }
 
 .task-div{
@@ -63,6 +75,15 @@
 @media (max-width: 1000px) {
     .calender-grid{
         display: none;
+    }
+}
+
+@media (max-height: 875px) {
+    .calender-grid:after{
+    content: "";
+    display: block;
+    height: 10px;
+    width: 100%;
     }
 }
 
