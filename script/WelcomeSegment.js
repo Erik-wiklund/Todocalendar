@@ -1,6 +1,4 @@
-window.addEventListener('load', main);
-
-function main() {
+function initWelcomeSegment() {
     let date = new Date()
     printTimeOfDay();
     printDayDateAndMonth(date);
