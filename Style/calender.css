@@ -20,6 +20,32 @@
     "header header header header header header header";
 }
 
+/* BACKGROUND IMAGES ACCORDING TO SEASON */
+.calendar-grid-image-fall{
+    background-image:url("/img/season-fall.png");
+    background-size: cover;
+    transition: ease-in-out 2s;
+}
+
+.calendar-grid-image-winter{
+    background-image:url("/img/season-winter.png");
+    background-size: cover;
+    transition: ease-in-out 2s;
+}
+
+.calendar-grid-image-spring{
+    background-image:url("/img/season-spring.jpg");
+    background-size: cover;
+    transition: ease-in-out 2s;
+}
+
+.calendar-grid-image-summer{
+    background-image:url("/img/season-summer.png");
+    background-size:cover;
+    transition: ease-in-out 1s;
+}
+/*- - - - - - - - - - - - - - - - - - -*/
+
 .calender-weekdays-header{
     grid-area: header;
 }
@@ -29,10 +55,21 @@
     box-shadow: 1px 2px 3px rgba(0,0,0,.5);
     min-width: 3.5em;
     position: relative;
-    padding: 5px;
-    border-radius: 0.5em;
-    font-weight: bold;
+    font-weight: bolder;
+    cursor: pointer;
+    opacity: 85%; /* Blir nog snyggast så här */
+    padding: 5px; /* Padding för siffrorna i div:en */
+    word-wrap: break-word;
+    hyphens: auto;
     transition: 0.25s;
+    border-radius: 0.5em;
+}
+
+.task-div{
+    position:absolute;
+    bottom:5px;
+    left: 0;
+    /* color: blue; */
 }
 
 @media (max-width: 1000px) {
@@ -51,14 +88,15 @@
 }
 
 .month-button-style {
-   background-color: #f8f9fa;
+    background-color: lightgray;
     border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    color:grey;
-    font-size: 11px;
+    color:black;
+    font-weight: bold;
+    font-size: 10px;
     height: 20px;
     width: 75px;
     cursor: pointer;

@@ -1,20 +1,26 @@
 .todo-header{
-    background-color: cornflowerblue;
     flex-grow: 1;
-    background-image: linear-gradient(cornflowerblue, darkblue);
-    min-height: 300px;
 }
 
 .todo-item-list{
-    background-color: cornflowerblue;
-    background-image: linear-gradient(cornflowerblue, darkblue);
-    flex-grow: 2;
+    border-top: 1px solid grey;
+    flex-grow: 3;
+    color: rgb(236, 170, 70);
+    padding: 5px; /* Padding för todo-listan, ser bättre ut */
     overflow-y: auto;
+}
+
+.orange-gradient{
+    background-image: linear-gradient(rgb(255,255,255), orange);
 }
 
 .todoheader-font{
     font-size: 1.5rem;
-    color: whitesmoke;
+    color: rgb(236, 170, 70);
+}
+
+.pointer{
+    cursor: pointer;
 }
 
 .todo-side-panel{

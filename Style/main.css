@@ -1,5 +1,5 @@
 main{
-    height: calc(100% - 3rem);
+    height:100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -12,10 +12,21 @@ main{
 }
 
 header{
-    background-image: linear-gradient(cornflowerblue, darkblue);
-    color: whitesmoke;
+    background-color: white;
+    color: rgb(236, 170, 70);
     font-size: 20px;
     height: 3rem;
+}
+
+.todo-side-panel{
+    grid-area: sidepanel;
+    background-color: pink;
+}
+
+.calender{
+    grid-area: calender;
+    background-color: white;
+    min-height: 31em;
 }
 
 @media (max-width: 1000px) {
