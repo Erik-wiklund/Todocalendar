@@ -1,6 +1,7 @@
 .todo-header{
     position: flex-start;
     min-height: 16em;
+    text-align: center;
 }
 
 .todo-item-list{

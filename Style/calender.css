@@ -78,9 +78,6 @@
     align-items: center;
 }
 
-.short-months{
-
-}
 @media (max-width: 1000px) {
     main{
         display: flex;
@@ -172,6 +169,12 @@
     }
 
     .short-months > span { display: none; }
+}
+
+@media (min-width: 1000px) {
+    .todo-header{
+        display: flex;
+    }
 }
 
 .month-button-style {
