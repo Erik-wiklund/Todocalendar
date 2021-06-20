@@ -143,7 +143,11 @@
         display: block;
         height: 10px;
         width: 100%;
-        }
+    }
+
+    .text-center{
+        font-size: 15px;
+    }
 }
 
 @media (max-width: 600px) {
