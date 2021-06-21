@@ -102,8 +102,8 @@
     }
 
     .calender-grid > div{
-    min-width: 1em;
-    min-height: 13px;
+        min-width: 1em;
+        min-height: 13px;
     }
 
     .overflow{
@@ -164,15 +164,6 @@
     height: 10px;
     width: 100%;
     }
-}
-
-@media (max-width: 450px) {
-
-    .short-months[data-abbr]::after { 
-        content: attr(data-abbr); 
-    }
-
-    .short-months > span { display: none; }
 }
 
 @media (min-width: 1000px) {
