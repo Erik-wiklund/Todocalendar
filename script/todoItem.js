@@ -62,12 +62,12 @@ function fillTodoList() {
 
             const minusButton = createElementWithClickEventAndCustomText("p", () => removeTodo(todoObject, todo), "-");
             minusButton.className = "pointer";
+            todoText.className = "pointer";
 
             newTodoDiv.append(todoText);
             newTodoDiv.append(minusButton);
 
             todoListDiv.append(newTodoDiv);
-
         }
     }
 }

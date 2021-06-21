@@ -24,19 +24,19 @@
 .calendar-grid-image-fall{
     background-image:url("/img/season-fall.png");
     background-size: cover;
-    transition: ease-in-out 2s;
+    transition: ease-in-out 1s;
 }
 
 .calendar-grid-image-winter{
     background-image:url("/img/season-winter.png");
     background-size: cover;
-    transition: ease-in-out 2s;
+    transition: ease-in-out 1s;
 }
 
 .calendar-grid-image-spring{
     background-image:url("/img/season-spring.jpg");
     background-size: cover;
-    transition: ease-in-out 2s;
+    transition: ease-in-out 1s;
 }
 
 .calendar-grid-image-summer{
