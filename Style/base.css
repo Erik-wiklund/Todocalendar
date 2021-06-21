@@ -1,6 +1,4 @@
-*{
-    font-family: sans-serif;
-}
+*{ font-family: sans-serif; }
 
 html,
 body {
@@ -9,99 +7,14 @@ body {
     margin: 0;
 }
 
-.flex{
-    display: flex;
-}
-
-.grow-1{ flex-grow: 1; }
-
-.grow-2{ flex-grow: 2; }
-
-.column{
-    flex-direction: column;
-}
-
-.justify-center{
-    justify-content: center;
-}
-
-.align-center{
-    align-items: center;
-}
-
-.justify-evenly { justify-content: space-evenly;}
-
-.space-between{
-    justify-content: space-between;
-}
-
-.grey{
-    color: grey;
-}
-
-.black{
-    color: black;
-}
-
-.red{
-    color: red;
-}
-
 .text-center{
     text-align: center;
     font-size: 24px;
 }
 
-.selectedDiv-fall{
-    background-color: orange !important;
-}
-
-.selectedDiv-winter {
-    background-color: rgb(91, 141, 216) !important;
-}
-
-.selectedDiv-spring {
-    background-color: rgb(158, 207, 68) !important;
-}
-
-.selectedDiv-summer {
-    background-color: gold !important;
-}
-
-.full-width{
-    width: 100%;
-}
-
 .no-margin-on-p > p{
     margin-top: 0;
     margin-bottom: 0;
-}
- 
-.margin-left {
-    margin-left: 1em;
-}
-
-.margin-right {
-    margin-right: 1em;
-}
-
-.bla{
-    align-self: flex-end;
-}
-.inline-flex{
-    display: inline-flex;
-}
-
-.white {
-    color: whitesmoke;
-}
-
-.display-none{
-    display: none;
-}
-
-.display{
-    display: grid !important;
 }
 
 .position-absolute{
@@ -147,10 +60,52 @@ body {
     text-overflow: ellipsis;
 }
 
-.pointer{
-    cursor: pointer;
-}
+.padding-top-5px{ padding-top: 5px; }
 
-.min-height-calender{
-    min-height: 100px;
-}
+.pointer{ cursor: pointer; }
+
+.min-height-calender{ min-height: 100px; }
+
+.margin-left { margin-left: 1em; }
+
+.margin-right { margin-right: 1em; }
+
+.margin-bottom-0{ margin-bottom: 0; }
+
+.inline-flex{ display: inline-flex; }
+
+.white { color: whitesmoke; }
+
+.display{ display: grid !important; }
+
+.selectedDiv-fall{ background-color: orange !important; }
+
+.selectedDiv-winter { background-color: rgb(91, 141, 216) !important; }
+
+.selectedDiv-spring { background-color: rgb(158, 207, 68) !important; }
+
+.selectedDiv-summer { background-color: gold !important; }
+
+.full-width{ width: 100%; }
+
+.grow-1{ flex-grow: 1; }
+
+.grow-2{ flex-grow: 2; }
+
+.column{ flex-direction: column; }
+
+.justify-center{ justify-content: center; }
+
+.align-center{ align-items: center; }
+
+.justify-evenly { justify-content: space-evenly;}
+
+.space-between{ justify-content: space-between; }
+
+.grey{ color: grey; }
+
+.black{ color: black; }
+
+.red{ color: red; }
+
+.flex{ display: flex; }

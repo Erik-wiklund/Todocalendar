@@ -3,7 +3,6 @@
     background-color: white;
     min-height: 31em;
 }
-/*behövs denna???*/
 
 .calender-grid{
     display: grid;
@@ -18,6 +17,21 @@
     min-height: 13px;
     grid-template-areas: 
     "header header header header header header header";
+}
+
+.calender-grid > div{
+    background-color: whitesmoke;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+    min-width: 3.5em;
+    position: relative;
+    font-weight: bolder;
+    cursor: pointer;
+    opacity: 85%; /* Blir nog snyggast så här */
+    padding: 5px; /* Padding för siffrorna i div:en */
+    word-wrap: break-word;
+    hyphens: auto;
+    transition: 0.25s;
+    border-radius: 0.5em;
 }
 
 /* BACKGROUND IMAGES ACCORDING TO SEASON */
@@ -51,21 +65,6 @@
     font-size: 12px;
 }
 
-.calender-grid > div{
-    background-color: whitesmoke;
-    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
-    min-width: 3.5em;
-    position: relative;
-    font-weight: bolder;
-    cursor: pointer;
-    opacity: 85%; /* Blir nog snyggast så här */
-    padding: 5px; /* Padding för siffrorna i div:en */
-    word-wrap: break-word;
-    hyphens: auto;
-    transition: 0.25s;
-    border-radius: 0.5em;
-}
-
 .task-div{
     position:absolute;
     bottom:5px;
@@ -78,6 +77,22 @@
     align-items: center;
 }
 
+.month-button-style {
+    background-color: lightgray;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color:black;
+    font-weight: bold;
+    font-size: 10px;
+    height: 20px;
+    width: 75px;
+    cursor: pointer;
+}
+
+/* Mobile view MQ */
 @media (max-width: 1000px) {
     main{
         display: flex;
@@ -150,6 +165,7 @@
     }
 }
 
+/* abbreviations for weekdays */
 @media (max-width: 600px) {
     .day[data-abbr]::after { 
         content: attr(data-abbr); 
@@ -157,6 +173,7 @@
     .day > span { display: none; }
 }
 
+/* Adds margin on scroll */
 @media (max-height: 825px) {
     .calender-grid:after{
     content: "";
@@ -166,23 +183,10 @@
     }
 }
 
+/* Show todo-header on desktop view */
 @media (min-width: 1000px) {
     .todo-header{
         display: flex;
     }
 }
 
-.month-button-style {
-    background-color: lightgray;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    color:black;
-    font-weight: bold;
-    font-size: 10px;
-    height: 20px;
-    width: 75px;
-    cursor: pointer;
-}

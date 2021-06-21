@@ -7,10 +7,6 @@ main{
     "sidepanel calender calender calender";
 }
 
-.margin-top{
-    margin-top: 2rem;
-}
-
 header{
     background-color: white;
     color: rgb(236, 170, 70);
@@ -29,6 +25,6 @@ header{
     min-height: 31em;
 }
 
-.show-calendar-button{
-    display: none;
-}
+.show-calendar-button{ display: none; }
+
+.display-none{ display: none; }
