@@ -59,10 +59,10 @@ function fillTodoList() {
 
             const todoText = createElementWithClickEventAndCustomText("p", () => editTodo(todoObject, todo), todo);
             todoText.className += "overflow-todo";
+            todoText.className += " pointer";
 
             const minusButton = createElementWithClickEventAndCustomText("p", () => removeTodo(todoObject, todo), "-");
             minusButton.className = "pointer";
-            todoText.className = "pointer";
 
             newTodoDiv.append(todoText);
             newTodoDiv.append(minusButton);
