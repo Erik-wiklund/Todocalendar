@@ -29,20 +29,6 @@ header{
     min-height: 31em;
 }
 
-@media (max-width: 1000px) {
-
-    main{
-        grid-template-areas: 
-    "sidepanel";
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    }
-
-    .calender{
-        display: none;
-    }
-
-    .calender > div{
-        display: none;
-    }
+.show-calendar-button{
+    display: none;
 }

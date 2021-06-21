@@ -13,8 +13,9 @@ body {
     display: flex;
 }
 
-.grow-2{ flex-grow: 2; }
 .grow-1{ flex-grow: 1; }
+
+.grow-2{ flex-grow: 2; }
 
 .column{
     flex-direction: column;
@@ -46,6 +47,10 @@ body {
     color: red;
 }
 
+.text-center{
+    text-align: center;
+    font-size: 24px;
+}
 
 .selectedDiv-fall{
     background-color: orange !important;
@@ -63,13 +68,13 @@ body {
     background-color: gold !important;
 }
 
-
 .full-width{
     width: 100%;
 }
 
 .no-margin-on-p > p{
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
  
 .margin-left {
@@ -91,6 +96,14 @@ body {
     color: whitesmoke;
 }
 
+.display-none{
+    display: none;
+}
+
+.display{
+    display: grid !important;
+}
+
 .position-absolute{
     position:absolute;
     height: 100%;
@@ -100,6 +113,7 @@ body {
 
 .position-absolute-task{
     position:absolute;
+    display: flex-start;
     width: 90%;
     bottom:0;
     left: 0;
@@ -108,7 +122,26 @@ body {
     color: black;
 }
 
+.position-absolute-todo{
+    position:absolute;
+    height: 1.5%;
+    width: 20%;
+    pointer-events: none;
+}
+
 .overflow{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.overflow-tasks{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.overflow-todo{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

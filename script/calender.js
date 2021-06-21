@@ -39,7 +39,7 @@ function createCalender() {
                     let number = document.createElement("div");
                     const posdiv = document.createElement("div");
                     posdiv.className = "position-absolute-task"
-                    number.className = "overflow";
+                    number.className = "overflow-tasks";
 
                     if (2 > numberoftodos > 0) {
                         number.innerText = (numberoftodos + ' uppgift idag');
@@ -71,7 +71,7 @@ function createCalender() {
 
             if (prevSelected && prevSelected.id === dayDiv.id) {
                 dayDiv.classList.add(getLastClassNameFromElement(prevSelected));
-                prevSelected = dayDiv;                
+                prevSelected = dayDiv;
             }
         }
         else {
@@ -96,6 +96,8 @@ function createCalender() {
         h2Div.innerText = months[selectedMonth] + " " + selectedYear;
         changeBackgroundImageAccordingToSeason(months[selectedMonth]);
         const nextMonth = document.getElementById("next-month");
+        h2Div.className += " text-center"
+
         calenderHeader.insertBefore(h2Div, nextMonth);
         changeSidePanelColorAccordingToSeason(months[selectedMonth]); // To change color on side panel
     }
@@ -129,7 +131,9 @@ function removeColors(divToChangeColorFor) {
 
 // Function for changing background image
 function changeBackgroundImageAccordingToSeason(month) {
+
     const divToChange = document.getElementById('calender');    
+
     removeSeasons(divToChange);
 
     if (isFall(month)) {
@@ -245,7 +249,7 @@ function showTodos(event) {
     else if (event.target.id == prevSelected.id) {
         prevSelected = undefined;
     }
-    
+
     initTodoList(event.target.id);
 }
 
@@ -263,7 +267,7 @@ function getMonthDays(monthInt, yearInt) {
     return new Date(yearInt, monthInt + 1, 0).getDate();
 }
 
-function getLastClassNameFromElement(element){
+function getLastClassNameFromElement(element) {
     return element.classList[prevSelected.classList.length - 1];
 }
 
@@ -272,3 +276,4 @@ let selectedMonth = new Date().getMonth();
 let selectedYear = new Date().getFullYear();
 let prevSelected;
 const months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
+const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']
