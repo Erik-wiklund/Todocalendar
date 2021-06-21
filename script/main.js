@@ -1,5 +1,6 @@
 window.addEventListener("load", main);
 
+// Globally used state
 state = {
     todoDictionary: [],
     local_id: undefined,
@@ -8,6 +9,7 @@ state = {
     prevSelected: undefined
 }
 
+// Start of program
 async function main() {
     initWelcomeSegment()
     await tryFetchCalenderInfo()

@@ -9,9 +9,19 @@ async function tryFetchCalenderInfo() {
     }
 }
 
+function addEventListeners() {
+    const prevButton = document.getElementById("prev-month");
+    prevButton.addEventListener("click", previousMonth);
+
+    const nextButton = document.getElementById("next-month");
+    nextButton.addEventListener("click", nextMonth);
+}
+
 function createCalender() {
+    printCalendarHeader();
     const calenderGrid = document.getElementById("calender");
 
+    // Empties grid, excluding beginning of grid (weekdays)
     for (let i = calenderGrid.childNodes.length; i > 19; i--) {
         calenderGrid.childNodes.item(i - 1).remove();
     }
@@ -20,72 +30,46 @@ function createCalender() {
     const numberOfDayPrevouslyMonth = getMonthDays(state.selectedMonth - 1, state.selectedYear);
     const firstWeekdayInMonth = findFirstWeekDay(state.selectedMonth, state.selectedYear);
 
+    // Loops through grid 7*7s
     for (let i = 0; i < gridSize; i++) {
         const dayDiv = document.createElement("div");
+        
+        // If day precedes current month
         if (i < firstWeekdayInMonth) {
-            dayDiv.innerText = numberOfDayPrevouslyMonth - (firstWeekdayInMonth - 1 - i);
-            dayDiv.className = "grey";
-            dayDiv.classList.add("min-height-calender");
+            daysOutsideOfCurrentMonth(dayDiv, "grey min-height-calender", numberOfDayPrevouslyMonth - (firstWeekdayInMonth - 1 - i));
         }
+        // If day is in current month
         else if (i < firstWeekdayInMonth + numberOfDays) {
             dayDiv.id = state.selectedYear + "-" + (state.selectedMonth + 1) + "-" + (i - firstWeekdayInMonth + 1);
             dayDiv.innerHTML = i - firstWeekdayInMonth + 1;
             dayDiv.addEventListener("click", showTodos);
-            dayDiv.classList.add("pointer");
-            dayDiv.classList.add("min-height-calender");
+            dayDiv.className = "pointer min-height-calender";
 
             if (state.todoDictionary.length && state.todoDictionary.find(x => x.key === dayDiv.id)) {
-
                 var numberoftodos = state.todoDictionary.find(x => x.key === dayDiv.id).value.length;
                 if (numberoftodos > 0) {
-
-                    let number = document.createElement("div");
-                    const posdiv = document.createElement("div");
-                    posdiv.className = "position-absolute-task"
-                    number.className = "overflow-tasks";
-
-                    if (2 > numberoftodos > 0) {
-                        number.innerText = (numberoftodos + ' uppgift idag');
-                    } else {
-                        number.innerText = (numberoftodos + ' uppgifter idag');
-                    };
-
-                    posdiv.append(number);
+                    const posdiv = createsDivWithSpecifiedNumberOfTodos(numberoftodos);
                     dayDiv.append(posdiv);
                 }
             }
-
-            // Kontrollera om helgdag
-            const sweholiday = swedishWeekends.find(x => x.date == formatDate(dayDiv.id));
-            if (sweholiday) {
-                dayDiv.className += " red pointer";
-
-                const dayName = document.createElement("p");
-                const posdiv = document.createElement("div");
-
-                posdiv.className = "position-absolute"
-                dayName.className = "overflow"
-
-                dayName.innerText = sweholiday.holiday;
-                posdiv.append(dayName);
-                dayDiv.append(posdiv);
-
-            }
-
+            
+            markDayRedIfSwedishHoliday(dayDiv);
+            
+            // If day is selected keep selection
             if (state.prevSelected && state.prevSelected.id === dayDiv.id) {
                 dayDiv.classList.add(getLastClassNameFromElement(state.prevSelected));
                 state.prevSelected = dayDiv;
             }
         }
+        // If day exceeds current month
         else {
-            dayDiv.innerText = i - (numberOfDays + firstWeekdayInMonth - 1);
-            dayDiv.className = "grey";
-            dayDiv.classList.add("min-height-calender");
+            daysOutsideOfCurrentMonth(dayDiv, "grey min-height-calender", i - (numberOfDays + firstWeekdayInMonth - 1));
         }
-
         calenderGrid.append(dayDiv);
     }
+}
 
+function printCalendarHeader() {
     const calenderHeader = document.getElementById("calender-header");
     const h2Div = document.querySelector("div.calender-weekdays-header > h2");
     // Skriver ut månad + år
@@ -106,6 +90,45 @@ function createCalender() {
     }
 }
 
+function markDayRedIfSwedishHoliday(dayDiv) {
+    const sweholiday = swedishWeekends.find(x => x.date == formatDate(dayDiv.id));
+
+    if (sweholiday) {
+        dayDiv.className += " red pointer";
+
+        const dayName = document.createElement("p");
+        const posdiv = document.createElement("div");
+
+        posdiv.className = "position-absolute"
+        dayName.className = "overflow"
+
+        dayName.innerText = sweholiday.holiday;
+        posdiv.append(dayName);
+        dayDiv.append(posdiv);
+    }
+}
+
+function createsDivWithSpecifiedNumberOfTodos(numberOfTodos) {
+    let number = document.createElement("div");
+    const posdiv = document.createElement("div");
+    posdiv.className = "position-absolute-task"
+    number.className = "overflow-tasks";
+
+    if (2 > numberOfTodos > 0) {
+        number.innerText = (numberOfTodos + ' uppgift idag');
+    } else {
+        number.innerText = (numberOfTodos + ' uppgifter idag');
+    };
+
+    posdiv.append(number);
+    return posdiv;
+}
+
+function daysOutsideOfCurrentMonth(element, classname, day) {
+    element.innerText = day;
+    element.className = classname;
+}
+
 // function for changing color on side panel
 function changeSidePanelColorAccordingToSeason(month) {
     const divToChangeColorFor = document.getElementById("sidepanel");
@@ -113,11 +136,11 @@ function changeSidePanelColorAccordingToSeason(month) {
 
     if (isFall(month)) {
         divToChangeColorFor.classList.add("fall-background");
-    } else if (isSpring(month)){
+    } else if (isSpring(month)) {
         divToChangeColorFor.classList.add("spring-background");
-    } else if(isWinter(month)){
+    } else if (isWinter(month)) {
         divToChangeColorFor.classList.add("winter-background");
-    } else if(isSummer(month)){
+    } else if (isSummer(month)) {
         divToChangeColorFor.classList.add("summer-background");
     }
 }
@@ -134,8 +157,7 @@ function removeColors(divToChangeColorFor) {
 
 // Function for changing background image
 function changeBackgroundImageAccordingToSeason(month) {
-
-    const divToChange = document.getElementById('calender');    
+    const divToChange = document.getElementById('calender');
 
     removeSeasons(divToChange);
 
@@ -154,28 +176,21 @@ function changeBackgroundImageAccordingToSeason(month) {
 
 /** Functions for checking season */
 function isFall(month) {
-    if (month == 'September' || month == 'Oktober' || month == 'November') {
-        return true;
-    }
+    if (month == 'September' || month == 'Oktober' || month == 'November') { return true; }
 }
 
 function isSummer(month) {
-    if (month == 'Juni' || month == 'Juli' || month == 'Augusti') {
-        return true;
-    }
+    if (month == 'Juni' || month == 'Juli' || month == 'Augusti') { return true; }
 }
 
-function isSpring(month) {
-    if (month == 'Mars' || month == 'April' || month == 'Maj') {
-        return true;
-    }
+function isSpring(month) { 
+    if (month == 'Mars' || month == 'April' || month == 'Maj') { return true; }
 }
 
 function isWinter(month) {
-    if (month == 'December' || month == 'Januari' || month == 'Februari') {
-        return true;
-    }
+    if (month == 'December' || month == 'Januari' || month == 'Februari') { return true; }
 }
+/** - - - - - - - - - - - - - -  */
 
 /** Set appropriate season */
 function setSeason(divToChange, seasonClass) {
@@ -190,14 +205,6 @@ function removeSeasons(divToChange) {
         'calendar-grid-image-summer',
         'calendar-grid-image-spring'
     )
-}
-
-function addEventListeners() {
-    const prevButton = document.getElementById("prev-month");
-    prevButton.addEventListener("click", previousMonth);
-
-    const nextButton = document.getElementById("next-month");
-    nextButton.addEventListener("click", nextMonth);
 }
 
 async function previousMonth() {
@@ -224,6 +231,7 @@ async function nextMonth() {
 
 function showTodos(event) {
 
+    // Changes season color for selected day
     if (event.target) {
         let seasonString = "";
         const calender = document.getElementById("calender");
@@ -242,6 +250,7 @@ function showTodos(event) {
         event.target.classList.toggle(seasonString);
     }
 
+    // Checks selected day
     if (!state.prevSelected) {
         state.prevSelected = event.target;
     }
@@ -256,6 +265,7 @@ function showTodos(event) {
     initTodoList(event.target.id);
 }
 
+// Finds first weekday of month
 function findFirstWeekDay(monthInt, yearInt) {
     const firstWeekDay = new Date(yearInt, monthInt).getDay();
     if (firstWeekDay == 0) {
@@ -266,11 +276,12 @@ function findFirstWeekDay(monthInt, yearInt) {
     }
 }
 
+// Returns number of days in month
 function getMonthDays(monthInt, yearInt) {
     return new Date(yearInt, monthInt + 1, 0).getDate();
 }
 
+// Returns last class of element (class name "prevSelected" is always last)
 function getLastClassNameFromElement(element) {
     return element.classList[state.prevSelected.classList.length - 1];
 }
-

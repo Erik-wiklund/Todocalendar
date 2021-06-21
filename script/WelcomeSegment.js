@@ -5,12 +5,14 @@ function initWelcomeSegment() {
     addClickEventTobutton();
 }
 
+// Prints day, date and month in sidebar
 function printDayDateAndMonth(date) {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     let dateString = date.toLocaleDateString('sv', options);
     document.getElementById('date').innerHTML = dateString;
 }
 
+// Prints time of day in sidebar
 function printTimeOfDay() {
     let currentTime = new Date();
     let hours = currentTime.getHours();
@@ -21,7 +23,6 @@ function printTimeOfDay() {
     }
 
     var t_str = hours + ':' + minutes;
-
     document.getElementById('clock').innerHTML = t_str;
 }
 
@@ -37,4 +38,5 @@ function editDivClasses(){
     todoHeader.classList.toggle("display-none");
     calendarGrid.classList.toggle("display");
 }
+// Updates clock every second
 setInterval(printTimeOfDay, 1000);
