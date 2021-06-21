@@ -37,5 +37,4 @@ function editDivClasses(){
     todoHeader.classList.toggle("display-none");
     calendarGrid.classList.toggle("display");
 }
-
 setInterval(printTimeOfDay, 1000);

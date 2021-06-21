@@ -1,15 +1,13 @@
 const swedishWeekends = []; // array av röda dagar för aktuell månad
 
 async function fetchCalendarInfo() {
-    const url = 'https://api.dryg.net/dagar/v2.1/' + selectedYear;
+    const url = 'https://api.dryg.net/dagar/v2.1/' + state.selectedYear;
     const response = await fetch(url);
     const data = await response.json();
 
     // Lägger svenska helgdagar till lokal array
     for (const day of data.dagar) {
         if (day['helgdag']) {
-            //console.log(day['datum']);
-            //console.log(day['helgdag']);
             swedishWeekends.push({
                 date: day['datum'],
                 holiday: day['helgdag']

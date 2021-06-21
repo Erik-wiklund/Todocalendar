@@ -1,3 +1,6 @@
+const gridSize = 42;
+const months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
+
 async function tryFetchCalenderInfo() {
     try {
         await fetchCalendarInfo();
@@ -13,9 +16,9 @@ function createCalender() {
         calenderGrid.childNodes.item(i - 1).remove();
     }
 
-    const numberOfDays = getMonthDays(selectedMonth, selectedYear);
-    const numberOfDayPrevouslyMonth = getMonthDays(selectedMonth - 1, selectedYear);
-    const firstWeekdayInMonth = findFirstWeekDay(selectedMonth, selectedYear);
+    const numberOfDays = getMonthDays(state.selectedMonth, state.selectedYear);
+    const numberOfDayPrevouslyMonth = getMonthDays(state.selectedMonth - 1, state.selectedYear);
+    const firstWeekdayInMonth = findFirstWeekDay(state.selectedMonth, state.selectedYear);
 
     for (let i = 0; i < gridSize; i++) {
         const dayDiv = document.createElement("div");
@@ -25,15 +28,15 @@ function createCalender() {
             dayDiv.classList.add("min-height-calender");
         }
         else if (i < firstWeekdayInMonth + numberOfDays) {
-            dayDiv.id = selectedYear + "-" + (selectedMonth + 1) + "-" + (i - firstWeekdayInMonth + 1);
+            dayDiv.id = state.selectedYear + "-" + (state.selectedMonth + 1) + "-" + (i - firstWeekdayInMonth + 1);
             dayDiv.innerHTML = i - firstWeekdayInMonth + 1;
             dayDiv.addEventListener("click", showTodos);
             dayDiv.classList.add("pointer");
             dayDiv.classList.add("min-height-calender");
 
-            if (todoDictionary.length && todoDictionary.find(x => x.key === dayDiv.id)) {
+            if (state.todoDictionary.length && state.todoDictionary.find(x => x.key === dayDiv.id)) {
 
-                var numberoftodos = todoDictionary.find(x => x.key === dayDiv.id).value.length;
+                var numberoftodos = state.todoDictionary.find(x => x.key === dayDiv.id).value.length;
                 if (numberoftodos > 0) {
 
                     let number = document.createElement("div");
@@ -69,9 +72,9 @@ function createCalender() {
 
             }
 
-            if (prevSelected && prevSelected.id === dayDiv.id) {
-                dayDiv.classList.add(getLastClassNameFromElement(prevSelected));
-                prevSelected = dayDiv;
+            if (state.prevSelected && state.prevSelected.id === dayDiv.id) {
+                dayDiv.classList.add(getLastClassNameFromElement(state.prevSelected));
+                state.prevSelected = dayDiv;
             }
         }
         else {
@@ -87,19 +90,19 @@ function createCalender() {
     const h2Div = document.querySelector("div.calender-weekdays-header > h2");
     // Skriver ut månad + år
     if (h2Div) {
-        h2Div.innerText = months[selectedMonth] + " " + selectedYear;
-        changeBackgroundImageAccordingToSeason(months[selectedMonth]);
-        changeSidePanelColorAccordingToSeason(months[selectedMonth]); // To change color on side panel
+        h2Div.innerText = months[state.selectedMonth] + " " + state.selectedYear;
+        changeBackgroundImageAccordingToSeason(months[state.selectedMonth]);
+        changeSidePanelColorAccordingToSeason(months[state.selectedMonth]); // To change color on side panel
     }
     else {
         const h2Div = document.createElement("h2");
-        h2Div.innerText = months[selectedMonth] + " " + selectedYear;
-        changeBackgroundImageAccordingToSeason(months[selectedMonth]);
+        h2Div.innerText = months[state.selectedMonth] + " " + state.selectedYear;
+        changeBackgroundImageAccordingToSeason(months[state.selectedMonth]);
         const nextMonth = document.getElementById("next-month");
         h2Div.className += " text-center"
 
         calenderHeader.insertBefore(h2Div, nextMonth);
-        changeSidePanelColorAccordingToSeason(months[selectedMonth]); // To change color on side panel
+        changeSidePanelColorAccordingToSeason(months[state.selectedMonth]); // To change color on side panel
     }
 }
 
@@ -198,22 +201,22 @@ function addEventListeners() {
 }
 
 async function previousMonth() {
-    selectedMonth--;
+    state.selectedMonth--;
 
-    if (selectedMonth < 0) {
-        selectedMonth = 11;
-        selectedYear--;
+    if (state.selectedMonth < 0) {
+        state.selectedMonth = 11;
+        state.selectedYear--;
         await tryFetchCalenderInfo();
     }
     createCalender();
 }
 
 async function nextMonth() {
-    selectedMonth++;
+    state.selectedMonth++;
 
-    if (selectedMonth > 11) {
-        selectedMonth = 0;
-        selectedYear++;
+    if (state.selectedMonth > 11) {
+        state.selectedMonth = 0;
+        state.selectedYear++;
         await tryFetchCalenderInfo();
     }
     createCalender();
@@ -239,15 +242,15 @@ function showTodos(event) {
         event.target.classList.toggle(seasonString);
     }
 
-    if (!prevSelected) {
-        prevSelected = event.target;
+    if (!state.prevSelected) {
+        state.prevSelected = event.target;
     }
-    else if (event.target.id !== prevSelected.id) {
-        prevSelected.classList.toggle(getLastClassNameFromElement(prevSelected));
-        prevSelected = event.target;
+    else if (event.target.id !== state.prevSelected.id) {
+        state.prevSelected.classList.toggle(getLastClassNameFromElement(state.prevSelected));
+        state.prevSelected = event.target;
     }
-    else if (event.target.id == prevSelected.id) {
-        prevSelected = undefined;
+    else if (event.target.id == state.prevSelected.id) {
+        state.prevSelected = undefined;
     }
 
     initTodoList(event.target.id);
@@ -268,12 +271,6 @@ function getMonthDays(monthInt, yearInt) {
 }
 
 function getLastClassNameFromElement(element) {
-    return element.classList[prevSelected.classList.length - 1];
+    return element.classList[state.prevSelected.classList.length - 1];
 }
 
-const gridSize = 42;
-let selectedMonth = new Date().getMonth();
-let selectedYear = new Date().getFullYear();
-let prevSelected;
-const months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
-const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']
