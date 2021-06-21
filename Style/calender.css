@@ -157,7 +157,7 @@
     .day > span { display: none; }
 }
 
-@media (max-height: 830px) {
+@media (max-height: 825px) {
     .calender-grid:after{
     content: "";
     display: block;
