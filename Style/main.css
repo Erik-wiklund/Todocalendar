@@ -20,8 +20,6 @@ header{
     min-height: 31em;
 }
 
-.todo-side-panel{ grid-area: sidepanel; }
-
 .show-calendar-button{ display: none; }
 
 .display-none{ display: none; }

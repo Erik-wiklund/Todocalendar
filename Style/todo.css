@@ -15,6 +15,16 @@
     overflow-x: hidden;
 }
 
+.todoheader-font{
+    font-size: 1.5rem;
+    color: black;
+}
+
+.todo-side-panel{
+    grid-area: sidepanel;
+    overflow-y: auto;
+}
+
 /*SOMMARFÄRG*/
 .summer-background{ background-image: linear-gradient(rgb(255,255,255) 1%, gold);}
 
@@ -26,13 +36,3 @@
 
 /*VÅRFÄRGER*/
 .spring-background{ background-image: linear-gradient(white 1%, #81ba37); }
-
-.todoheader-font{
-    font-size: 1.5rem;
-    color: black;
-}
-
-.todo-side-panel{
-    grid-area: sidepanel;
-    overflow-y: auto;
-}
