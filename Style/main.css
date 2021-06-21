@@ -14,10 +14,7 @@ header{
     height: 3rem;
 }
 
-.todo-side-panel{
-    grid-area: sidepanel;
-    background-color: pink;
-}
+.todo-side-panel{ grid-area: sidepanel; }
 
 .calender{
     grid-area: calender;
