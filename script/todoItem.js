@@ -65,6 +65,7 @@ function getAllTodosOrById(id) {
     else {
         for (const todoListofDay of state.todoDictionary) {
             todoObjectList = todoObjectList.concat(todoListofDay);
+            todoObjectList = todoObjectList.sort((x, y) => new Date(x.key) - new Date(y.key));
         }
     }
     return todoObjectList;
